@@ -10,6 +10,8 @@
             background: linear-gradient(to right, #ff9800, #2196f3);
             color: white;
             text-align: center;
+            margin: 0;
+            padding: 0;
         }
         header {
             background: rgba(0, 0, 0, 0.8);
@@ -39,10 +41,19 @@
             border-radius: 10px;
             width: 200px;
             text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
         .card img {
             width: 100%;
             border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .card img:hover {
+            transform: scale(1.1);
         }
         footer {
             margin-top: 50px;
@@ -67,15 +78,15 @@
         
         <h2>Popular Movies</h2>
         <div class="movies">
-            <div class="card">
+            <div class="card" onclick="redirectTo('https://www.imdb.com/title/tt0468569/')">
                 <img src="https://i.postimg.cc/tR6r2fqp/unnamed.jpg" alt="The Dark Knight">
                 <p>The Dark Knight</p>
             </div>
-            <div class="card">
+            <div class="card" onclick="redirectTo('https://www.imdb.com/title/tt0241527/')">
                 <img src="https://i.postimg.cc/2jGcBW2f/Harry-Potter.jpg" alt="Harry Potter">
                 <p>Harry Potter</p>
             </div>
-            <div class="card">
+            <div class="card" onclick="redirectTo('https://www.imdb.com/title/tt1375666/')">
                <img src="https://i.postimg.cc/fyqfqxrt/Inception.jpg" alt="Inception">
                 <p>Inception</p>
             </div>
@@ -83,15 +94,15 @@
         
         <h2>TV Shows</h2>
         <div class="tv-shows">
-            <div class="card">
+            <div class="card" onclick="redirectTo('https://www.imdb.com/title/tt0108778/')">
                 <img src="https://i.postimg.cc/ZnPhr57M/Friends.jpg" alt="Friends">
                 <p>Friends</p>
             </div>
-            <div class="card">
+            <div class="card" onclick="redirectTo('https://www.imdb.com/title/tt0898266/')">
                 <img src="https://i.postimg.cc/HsKtQ9MF/The-Big-Bang-Theory.jpg" alt="The Big Bang Theory">
                 <p>The Big Bang Theory</p>
             </div>
-            <div class="card">
+            <div class="card" onclick="redirectTo('https://www.imdb.com/title/tt0944947/')">
                <img src="https://i.postimg.cc/rpR31pzN/Game-Of-Thrones.jpg" alt="Game of Thrones">
                 <p>Game of Thrones</p>
             </div>
@@ -100,5 +111,13 @@
     <footer>
         <p>&copy; 2025 Warner Bros. All rights reserved. Designed by Kagiso Mmolawa.</p>
     </footer>
+
+    <script>
+        // JavaScript function to redirect when a card is clicked
+        function redirectTo(url) {
+            window.location.href = url;
+        }
+    </script>
 </body>
 </html>
+
