@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warner Bros. | TV Shows</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
+        body {
+            font-family: 'Rubik Glitch', cursive;
+            background: radial-gradient(circle, #ff9800, #ff5722);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .container {
+            padding: 50px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .shows {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px;
+            scrollbar-width: none;
+        }
+        .shows::-webkit-scrollbar {
+            display: none;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+            text-align: center;
+            flex: 0 0 auto;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: scale(1.1);
+        }
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .category-label {
+            font-size: 1.5em;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://i.postimg.cc/15pj5d2J/images.png" alt="Warner Bros. Logo" width="150">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="movies.html">Movies</a>
+            <a href="tvshows.html">TV Shows</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>TV Shows</h1>
+        <p>Discover the best TV shows from Warner Bros.</p>
+
+        <div class="section">
+            <div class="category-label">Trending Now</div>
+            <div class="shows">
+                <div class="card" onclick="window.open('https://dopebox.to/search/friends', '_blank')"><img src="https://i.postimg.cc/tgx1Jp8T/Friends.jpg" alt="Friends"><p>Friends</p></div>
+                <div class="card" onclick="window.open('https://dopebox.to/search/game-of-thrones', '_blank')"><img src="https://i.postimg.cc/XNxVhVJG/GameOfThrones.jpg" alt="Game of Thrones"><p>Game of Thrones</p></div>
+                <div class="card" onclick="window.open('https://dopebox.to/search/big-bang-theory', '_blank')"><img src="https://i.postimg.cc/9F1zHtbb/BigBangTheory.jpg" alt="The Big Bang Theory"><p>The Big Bang Theory</p></div>
+                <div class="card" onclick="window.open('https://dopebox.to/search/the-witcher', '_blank')"><img src="https://i.postimg.cc/PqL9wYWT/TheWitcher.jpg" alt="The Witcher"><p>The Witcher</p></div>
+                <div class="card" onclick="window.open('https://dopebox.to/search/supernatural', '_blank')"><img src="https://i.postimg.cc/gkwbLz1Q/Supernatural.jpg" alt="Supernatural"><p>Supernatural</p></div>
+                <div class="card" onclick="window.open('https://dopebox.to/search/stranger-things', '_blank')"><img src="https://i.postimg.cc/NM3tdyrQ/StrangerThings.jpg" alt="Stranger Things"><p>Stranger Things</p></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="category-label">New Releases</div>
+            <div class="shows">
+                <div class="card" onclick="window.open('https://dopebox.to/search/house-of-the-dragon', '_blank')"><img src="https://i.postimg.cc/bvDnKPvh/HouseOfDragon.jpg" alt="House of the Dragon"><p>House of the Dragon</p></div>
+                <div class="card" onclick="window.open('https://dopebox.to/search/the-last-of-us', '_blank')"><img src="https://i.postimg.cc/vZkjTq6c/TheLastOfUs.jpg" alt="The Last of Us"><p>The Last of Us</p></div>
+                <div class="card" onclick="window.open('https://dopebox.to/search/peacemaker', '_blank')"><img src="https://i.postimg.cc/5y3gX2gj/Peacemaker.jpg" alt="Peacemaker"><p>Peacemaker</p></div>
+                <div class="card" onclick="window.open('https://dopebox.to/search/ted-lasso', '_blank')"><img src="https://i.postimg.cc/zvvx3gYs/TedLasso.jpg" alt="Ted Lasso"><p>Ted Lasso</p></div>
+                <div class="card" onclick="window.open('https://dopebox.to/search/euphoria', '_blank')"><img src="https://i.postimg.cc/Kzq3cKxh/Euphoria.jpg" alt="Euphoria"><p>Euphoria</p></div>
+                <div class="card" onclick="window.open('https://dopebox.to/search/the-boys', '_blank')"><img src="https://i.postimg.cc/Dw65W9mF/TheBoys.jpg" alt="The Boys"><p>The Boys</p></div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 Warner Bros. All rights reserved. Designed by Kagiso Mmolawa.</p>
+    </footer>
+</body>
+</html>
