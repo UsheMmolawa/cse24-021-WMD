@@ -32,6 +32,66 @@
             padding: 20px;
             background: rgba(0, 0, 0, 0.9);
         }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        input, textarea {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 5px;
+            border: 1px solid #fff;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff9800;
+        }
+        .popup {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.2em;
+            z-index: 100;
+            animation: fadeIn 1s;
+        }
+        .popup p {
+            margin: 0;
+        }
+        .popup .arrow {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 20px solid rgba(0, 0, 0, 0.9);
+            margin: 10px auto 0;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -49,10 +109,42 @@
         <h1>Contact Us</h1>
         <p>For any inquiries, feel free to reach out to us:</p>
         <p><strong>Phone:</strong> 75826717</p>
-        <p><strong>Email:</strong> <a href="https://teams.microsoft.com/l/chat/0/0?users=cse24-021@thuto.bac.ac.bw" style="color: white; text-decoration: underline;">cse24-021@thuto.bac.sc.bw</a></p>
+        <p><strong>Email:</strong> <a href="mailto:cse24-021@thuto.bac.sc.bw" style="color: white; text-decoration: underline;">cse24-021@thuto.bac.sc.bw</a></p>
+
+        <h2>Send Us a Message</h2>
+        <form id="contactForm">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+
+        <!-- Popup for confirmation -->
+        <div class="popup" id="popupMessage">
+            <p>Your message has been sent successfully!</p>
+            <div class="arrow"></div>
+        </div>
     </div>
     <footer>
         <p>&copy; 2025 Warner Bros. All rights reserved. Designed by Kagiso Mmolawa.</p>
     </footer>
+
+    <script>
+        // Handle form submission
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault();  // Prevent form from submitting
+
+            // Show the popup
+            document.getElementById("popupMessage").style.display = "block";
+
+            // Reset the form
+            document.getElementById("contactForm").reset();
+
+            // Hide the popup after 3 seconds
+            setTimeout(function() {
+                document.getElementById("popupMessage").style.display = "none";
+            }, 3000);
+        });
+    </script>
 </body>
 </html>
