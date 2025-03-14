@@ -68,6 +68,55 @@
             padding: 20px;
             background: rgba(0, 0, 0, 0.9);
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .category-label {
+                font-size: 1.2em;
+            }
+            .card {
+                width: 160px; /* Slightly smaller cards for medium screens */
+            }
+            .shows {
+                gap: 10px; /* Reduced gap between cards */
+            }
+            nav a {
+                font-size: 14px; /* Smaller font for mobile */
+                margin: 0 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            .category-label {
+                font-size: 1em;
+            }
+            .card {
+                width: 140px; /* Even smaller cards for small screens */
+            }
+            .shows {
+                flex-wrap: wrap; /* Wrap cards to fit in the container */
+                justify-content: center; /* Center the wrapped cards */
+                gap: 15px;
+            }
+            .card img {
+                height: 150px; /* Limit image height to avoid overflow */
+                object-fit: cover;
+            }
+            nav {
+                display: block;
+                margin-top: 10px;
+            }
+            nav a {
+                margin: 5px 0; /* Stack the navigation links vertically */
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
@@ -113,3 +162,4 @@
     </footer>
 </body>
 </html>
+
