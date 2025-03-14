@@ -16,6 +16,7 @@
         header {
             background: rgba(0, 0, 0, 0.8);
             padding: 20px;
+            position: relative;
         }
         nav ul {
             list-style: none;
@@ -111,6 +112,66 @@
             margin-top: 50px;
             text-align: left;
         }
+
+        /* Login/Sign-Up Styling */
+        .login-popup, .signup-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            color: white;
+        }
+        .login-popup input, .signup-popup input {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+        }
+        .login-popup button, .signup-popup button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffeb3b;
+            cursor: pointer;
+        }
+        .login-popup button:hover, .signup-popup button:hover {
+            background-color: #ffca28;
+        }
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .logged-in {
+            font-weight: bold;
+            font-size: 20px;
+        }
+        #login-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #ffeb3b;
+            padding: 10px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #login-btn:hover {
+            background-color: #ffca28;
+        }
     </style>
 </head>
 <body>
@@ -125,6 +186,7 @@
                 <li><a href="contact.html">Contact Us</a></li>
             </ul>
         </nav>
+        <button id="login-btn" onclick="openLoginPopup()">Login</button>
     </header>
     
     <div class="content" id="home">
@@ -186,12 +248,105 @@
         <p>&copy; 2025 Warner Bros. All rights reserved. Designed by Kagiso Mmolawa.</p>
     </footer>
 
+    <!-- Login Popup -->
+    <div class="login-popup" id="loginPopup">
+        <span class="popup-close" onclick="closeLoginPopup()">&times;</span>
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="loginUsername" placeholder="Username" required><br>
+            <input type="password" id="loginPassword" placeholder="Password" required><br>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <span style="color: #ffeb3b; cursor: pointer;" onclick="openSignUpPopup()">Sign Up</span></p>
+    </div>
+
+    <!-- Sign Up Popup -->
+    <div class="signup-popup" id="signupPopup">
+        <span class="popup-close" onclick="closeSignUpPopup()">&times;</span>
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <input type="text" id="signupUsername" placeholder="Username" required><br>
+            <input type="email" id="signupEmail" placeholder="Email" required><br>
+            <input type="password" id="signupPassword" placeholder="Password" required><br>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required><br>
+            <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <span style="color: #ffeb3b; cursor: pointer;" onclick="openLoginPopup()">Login</span></p>
+    </div>
+
     <script>
-        // JavaScript function to redirect when a card is clicked
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let loggedInUser = JSON.parse(localStorage.getItem('loggedInUser')) || null;
+
+        // Open login popup
+        function openLoginPopup() {
+            document.getElementById('loginPopup').style.display = 'block';
+        }
+
+        // Close login popup
+        function closeLoginPopup() {
+            document.getElementById('loginPopup').style.display = 'none';
+        }
+
+        // Open sign-up popup
+        function openSignUpPopup() {
+            document.getElementById('signupPopup').style.display = 'block';
+        }
+
+        // Close sign-up popup
+        function closeSignUpPopup() {
+            document.getElementById('signupPopup').style.display = 'none';
+        }
+
+        // Handle login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let username = document.getElementById('loginUsername').value;
+            let password = document.getElementById('loginPassword').value;
+            
+            // Check if the username and password are correct
+            let user = users.find(u => u.username === username && u.password === password);
+            if (user) {
+                loggedInUser = user;
+                localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+                document.getElementById('login-btn').textContent = loggedInUser.username;
+                closeLoginPopup();
+            } else {
+                alert('Incorrect username or password');
+            }
+        });
+
+        // Handle sign-up form submission
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let username = document.getElementById('signupUsername').value;
+            let email = document.getElementById('signupEmail').value;
+            let password = document.getElementById('signupPassword').value;
+            let confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            let newUser = { username, email, password };
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            closeSignUpPopup();
+            alert('Sign-up successful! Please log in.');
+        });
+
+        // Redirect to movie or TV show link
         function redirectTo(url) {
-            window.open(url, '_blank');  // Open the link in a new tab
+            window.location.href = url;
+        }
+
+        // Set login button text if logged in
+        if (loggedInUser) {
+            document.getElementById('login-btn').textContent = loggedInUser.username;
         }
     </script>
 </body>
 </html>
+
 
