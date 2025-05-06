@@ -344,19 +344,16 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     }
 });
 
-        // Redirect to movie or TV show link in a new tab
-function redirectTo(url) {
-    window.open(url, '_blank');
-}
-
+        // Redirect to movie or TV show link
+        function redirectTo(url) {
+            window.location.href = url;
+        }
 
         // Set login button text if logged in
         if (loggedInUser) {
             document.getElementById('login-btn').textContent = loggedInUser.username;
         }
-    
-</script>
-
+    </script>
 </body>
 </html>
 
