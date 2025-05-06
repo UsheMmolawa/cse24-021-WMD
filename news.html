@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Warner Bros. News</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0e0e0e;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #111;
+            padding: 1em 2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .hero {
+            background-image: url('images/news-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin: 0;
+            color: #FFD700;
+        }
+
+        .news-section {
+            padding: 2em;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .news-card {
+            background: #1c1c1c;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .news-card .content {
+            padding: 15px;
+        }
+
+        .news-card h3 {
+            margin-top: 0;
+            color: #FFD700;
+        }
+
+        .news-card p {
+            color: #ccc;
+        }
+
+        footer {
+            background: #111;
+            color: #aaa;
+            text-align: center;
+            padding: 1em;
+            margin-top: 2em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>Warner Bros.</h2>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="movies.html">Movies</a>
+            <a href="tvshows.html">TV Shows</a>
+            <a href="news.html">News</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Latest Warner Bros. News</h1>
+    </div>
+
+    <section class="news-section">
+        <div class="news-card">
+            <img src="images/dune2.jpg" alt="Dune 2 Poster">
+            <div class="content">
+                <h3>‘Dune: Part Two’ Breaks Box Office Records</h3>
+                <p>The sci-fi sequel has topped charts globally, becoming the highest-grossing Warner Bros. film of 2025 so far.</p>
+            </div>
+        </div>
+
+        <div class="news-card">
+            <img src="images/batman.jpg" alt="The Batman News">
+            <div class="content">
+                <h3>New Batman Trilogy Announced</h3>
+                <p>Warner Bros. confirms a new trilogy with Robert Pattinson returning as the caped crusader. First film drops in 2026.</p>
+            </div>
+        </div>
+
+        <div class="news-card">
+            <img src="images/harrypotter.jpg" alt="Harry Potter TV Show">
+            <div class="content">
+                <h3>Harry Potter TV Show in Development</h3>
+                <p>A live-action Harry Potter series is officially in the works for HBO Max, focusing on a new generation at Hogwarts.</p>
+            </div>
+        </div>
+
+        <!-- Add more news cards here -->
+    </section>
+
+    <footer>
+        &copy; 2025 Warner Bros. Entertainment Inc. All rights reserved.
+    </footer>
+
+</body>
+</html>
