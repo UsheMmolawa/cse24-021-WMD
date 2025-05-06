@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Your Cart - Warner Bros. Store</title>
+    <title>Your Cart</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -26,47 +26,66 @@
             margin-left: 15px;
         }
 
-        .cart-count {
-            background: #FFD700;
-            color: black;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-weight: bold;
-            margin-left: 8px;
-        }
-
         .hero {
-            background: #1c1c1c;
-            padding: 60px 20px;
             text-align: center;
+            padding: 2em;
+            background-color: #1c1c1c;
         }
 
         .hero h1 {
+            font-size: 3em;
             color: #FFD700;
-            font-size: 2.5em;
         }
 
-        .cart-items {
+        .cart-section {
             padding: 2em;
         }
 
-        .cart-items ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .cart-items li {
-            background: #222;
-            margin-bottom: 10px;
-            padding: 15px;
+        .cart-item {
+            background: #1c1c1c;
+            margin-bottom: 1em;
+            padding: 1em;
             border-radius: 8px;
-            color: #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .total {
+        .cart-item span {
             font-size: 1.2em;
-            margin-top: 1em;
-            color: #FFD700;
+        }
+
+        .cart-item button {
+            background: #FFD700;
+            border: none;
+            color: black;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .cart-item button:hover {
+            background-color: #e6c200;
+        }
+
+        .actions {
+            text-align: center;
+            margin-top: 2em;
+        }
+
+        .actions button {
+            background: #FFD700;
+            border: none;
+            padding: 10px 20px;
+            color: black;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .actions button:hover {
+            background-color: #e6c200;
         }
 
         footer {
@@ -74,7 +93,7 @@
             color: #aaa;
             text-align: center;
             padding: 1em;
-            margin-top: 2em;
+            margin-top: 3em;
         }
     </style>
 </head>
@@ -88,6 +107,7 @@
             <a href="tvshows.html">TV Shows</a>
             <a href="news.html">News</a>
             <a href="store.html">Store</a>
+            <a href="contact.html">Contact</a>
             <a href="cart.html">Cart</a>
         </nav>
     </header>
@@ -96,34 +116,62 @@
         <h1>Your Shopping Cart</h1>
     </div>
 
-    <section class="cart-items">
-        <ul id="cart-list"></ul>
-        <div class="total" id="total"></div>
+    <section class="cart-section" id="cart-items">
+        <!-- Items will be populated here -->
     </section>
+
+    <div class="actions">
+        <button onclick="clearCart()">Clear Cart</button>
+        <p>Total: $<span id="total-price">0.00</span></p>
+    </div>
 
     <footer>
         &copy; 2025 Warner Bros. Entertainment Inc. All rights reserved.
     </footer>
 
     <script>
-        const cartList = document.getElementById('cart-list');
-        const totalDisplay = document.getElementById('total');
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        function loadCart() {
+            let items = JSON.parse(localStorage.getItem('cart')) || [];
+            const container = document.getElementById('cart-items');
+            const totalPriceEl = document.getElementById('total-price');
+            container.innerHTML = '';
 
-        if (cart.length === 0) {
-            cartList.innerHTML = "<li>Your cart is empty.</li>";
-            totalDisplay.textContent = "";
-        } else {
-            let total = 0;
-            cart.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = item;
-                cartList.appendChild(li);
-                total += 20; // Assume each item is $20 for simplicity
+            let totalPrice = 0;
+            if (items.length === 0) {
+                container.innerHTML = '<p>Your cart is empty.</p>';
+                totalPriceEl.innerText = '0.00';
+                return;
+            }
+
+            items.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <span>${item.productName} - $${item.productPrice}</span>
+                    <button onclick="removeItem('${item.productName}')">Remove</button>
+                `;
+                container.appendChild(div);
+                totalPrice += item.productPrice;
             });
-            totalDisplay.textContent = `Total Items: ${cart.length} | Estimated Total: $${total.toFixed(2)}`;
+
+            totalPriceEl.innerText = totalPrice.toFixed(2);
         }
+
+        function removeItem(productName) {
+            let items = JSON.parse(localStorage.getItem('cart')) || [];
+            items = items.filter(item => item.productName !== productName);
+            localStorage.setItem('cart', JSON.stringify(items));
+            loadCart();
+        }
+
+        function clearCart() {
+            localStorage.removeItem('cart');
+            loadCart();
+        }
+
+        document.addEventListener('DOMContentLoaded', loadCart);
     </script>
 
 </body>
 </html>
+
