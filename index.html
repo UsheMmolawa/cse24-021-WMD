@@ -354,7 +354,12 @@ function redirectTo(url) {
         if (loggedInUser) {
             document.getElementById('login-btn').textContent = loggedInUser.username;
         }
-    </script>
+    <script>
+    function redirectTo(url) {
+        window.open(url, '_blank');
+    }
+</script>
+
 </body>
 </html>
 
