@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart - Warner Bros. Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0e0e0e;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #111;
+            padding: 1em 2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .cart-count {
+            background: #FFD700;
+            color: black;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
+        .hero {
+            background: #1c1c1c;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: #FFD700;
+            font-size: 2.5em;
+        }
+
+        .cart-items {
+            padding: 2em;
+        }
+
+        .cart-items ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .cart-items li {
+            background: #222;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            color: #ddd;
+        }
+
+        .total {
+            font-size: 1.2em;
+            margin-top: 1em;
+            color: #FFD700;
+        }
+
+        footer {
+            background: #111;
+            color: #aaa;
+            text-align: center;
+            padding: 1em;
+            margin-top: 2em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>Warner Bros.</h2>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="movies.html">Movies</a>
+            <a href="tvshows.html">TV Shows</a>
+            <a href="news.html">News</a>
+            <a href="store.html">Store</a>
+            <a href="cart.html">Cart</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Your Shopping Cart</h1>
+    </div>
+
+    <section class="cart-items">
+        <ul id="cart-list"></ul>
+        <div class="total" id="total"></div>
+    </section>
+
+    <footer>
+        &copy; 2025 Warner Bros. Entertainment Inc. All rights reserved.
+    </footer>
+
+    <script>
+        const cartList = document.getElementById('cart-list');
+        const totalDisplay = document.getElementById('total');
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        if (cart.length === 0) {
+            cartList.innerHTML = "<li>Your cart is empty.</li>";
+            totalDisplay.textContent = "";
+        } else {
+            let total = 0;
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                cartList.appendChild(li);
+                total += 20; // Assume each item is $20 for simplicity
+            });
+            totalDisplay.textContent = `Total Items: ${cart.length} | Estimated Total: $${total.toFixed(2)}`;
+        }
+    </script>
+
+</body>
+</html>
