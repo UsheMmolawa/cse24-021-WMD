@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Warner Bros. Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0e0e0e;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #111;
+            padding: 1em 2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .cart-count {
+            background: #FFD700;
+            color: black;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
+        .hero {
+            background-image: url('images/store-banner.jpg'); /* Optional banner image */
+            background-size: cover;
+            background-position: center;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin: 0;
+            color: #FFD700;
+        }
+
+        .store-section {
+            padding: 2em;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: #1c1c1c;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+            text-align: center;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .product-card h3 {
+            margin: 10px 0;
+            color: #FFD700;
+        }
+
+        .product-card p {
+            color: #ccc;
+        }
+
+        .product-card button {
+            background: #FFD700;
+            border: none;
+            color: black;
+            padding: 10px 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .product-card button:hover {
+            background: #e6c200;
+        }
+
+        footer {
+            background: #111;
+            color: #aaa;
+            text-align: center;
+            padding: 1em;
+            margin-top: 2em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>Warner Bros.</h2>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="movies.html">Movies</a>
+            <a href="tvshows.html">TV Shows</a>
+            <a href="news.html">News</a>
+            <a href="store.html">Store</a>
+            <a href="contact.html">Contact</a>
+            <span id="cart" title="Items in cart">🛒 <span class="cart-count" id="cart-count">0</span></span>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Warner Bros. Store</h1>
+    </div>
+
+    <section class="store-section">
+        <div class="product-card">
+            <img src="https://i.postimg.cc/MpKnKYhv/batman-shirt.jpg" alt="Batman T-Shirt">
+            <h3>Batman Logo T-Shirt</h3>
+            <p>$20.00</p>
+            <button onclick="addToCart('Batman Logo T-Shirt')">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://i.postimg.cc/FKvM7wNf/harrypotter-shirt.jpg" alt="Harry Potter T-Shirt">
+            <h3>Hogwarts Crest T-Shirt</h3>
+            <p>$22.00</p>
+            <button onclick="addToCart('Hogwarts Crest T-Shirt')">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://i.postimg.cc/wT76dDfQ/friends-shirt.jpg" alt="Friends T-Shirt">
+            <h3>Friends Logo T-Shirt</h3>
+            <p>$18.00</p>
+            <button onclick="addToCart('Friends Logo T-Shirt')">Add to Cart</button>
+        </div>
+
+        <!-- Add more products as needed -->
+    </section>
+
+    <footer>
+        &copy; 2025 Warner Bros. Entertainment Inc. All rights reserved.
+    </footer>
+
+    <script>
+        let cartCount = 0;
+
+        function addToCart(product) {
+            cartCount++;
+            document.getElementById('cart-count').innerText = cartCount;
+            alert(`${product} added to cart!`);
+        }
+    <script>
+    let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function addToCart(productName) {
+        cartItems.push(productName);
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+        document.getElementById('cart-count').innerText = cartItems.length;
+        alert(`${productName} added to cart!`);
+    }
+
+    // Update count on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('cart-count').innerText = cartItems.length;
+    });
+</script>
+
+</body>
+</html>
