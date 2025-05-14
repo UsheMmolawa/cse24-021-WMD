@@ -5,149 +5,285 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warner Bros. | Contact Us</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
         body {
             font-family: 'Open Sans', sans-serif;
             background: radial-gradient(circle, #ff9800, #ff5722);
             color: white;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 20px;
-        }
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .container {
-            padding: 50px;
-        }
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.9);
-        }
-        form {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
         }
-        input, textarea {
-            padding: 10px;
-            margin: 10px 0;
-            width: 100%;
-            max-width: 400px;
-            border-radius: 5px;
-            border: 1px solid #fff;
+        
+        .navbar {
+            background: rgba(0, 0, 0, 0.9) !important;
+            padding: 15px 0;
+        }
+        
+        .navbar-brand img {
+            height: 50px;
+        }
+        
+        .nav-link {
+            color: white !important;
+            font-weight: bold;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #ffeb3b !important;
+        }
+        
+        .contact-hero {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.5);
+            margin-bottom: 40px;
+        }
+        
+        .contact-info {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-info i {
+            font-size: 1.5rem;
+            color: #ffeb3b;
+            margin-right: 10px;
+        }
+        
+        .contact-form {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .form-control {
             background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
+            padding: 12px;
+            margin-bottom: 20px;
         }
-        button {
-            padding: 10px 20px;
+        
+        .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: white;
+            box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25);
+            border-color: #ffeb3b;
+        }
+        
+        .btn-submit {
             background-color: #ff5722;
             color: white;
+            font-weight: bold;
+            padding: 12px 30px;
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            transition: all 0.3s ease;
         }
-        button:hover {
+        
+        .btn-submit:hover {
             background-color: #ff9800;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
-        .popup {
-            display: none;
-            background-color: rgba(0, 0, 0, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        
+        .footer {
+            background: rgba(0, 0, 0, 0.9);
             color: white;
-            font-size: 1.2em;
-            z-index: 100;
-            animation: fadeIn 1s;
+            padding: 30px 0;
+            margin-top: auto;
         }
-        .popup p {
-            margin: 0;
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
         }
-        .popup .arrow {
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-top: 20px solid rgba(0, 0, 0, 0.9);
-            margin: 10px auto 0;
+        
+        .social-icons a:hover {
+            color: #ffeb3b;
         }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
+        
+        /* Toast notification */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1100;
+        }
+        
+        .toast {
+            background-color: rgba(0, 0, 0, 0.9);
+            border-left: 5px solid #ffeb3b;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-hero {
+                padding: 60px 0;
             }
-            to {
-                opacity: 1;
+            
+            .contact-info, .contact-form {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <img src="https://i.postimg.cc/15pj5d2J/images.png" alt="Warner Bros. Logo" width="150">
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="movies.html">Movies</a>
-            <a href="tvshows.html">TV Shows</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact Us</a>
-            <a href="news.html">News</a>
-            <a href="cart.html">Cart</a>
-            <a href="store.html">Store</a>
-        </nav>
-    </header>
-    <div class="container">
-        <h1>Contact Us</h1>
-        <p>For any inquiries, feel free to reach out to us:</p>
-        <p><strong>Phone:</strong> 75826717</p>
-        <p><strong>Email:</strong> <a href="mailto:cse24-021@thuto.bac.sc.bw" style="color: white; text-decoration: underline;">cse24-021@thuto.bac.sc.bw</a></p>
-
-        <h2>Send Us a Message</h2>
-        <form id="contactForm">
-            <input type="text" id="name" name="name" placeholder="Your Name" required>
-            <input type="email" id="email" name="email" placeholder="Your Email" required>
-            <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-
-        <!-- Popup for confirmation -->
-        <div class="popup" id="popupMessage">
-            <p>Your message has been sent successfully!</p>
-            <div class="arrow"></div>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="https://i.postimg.cc/15pj5d2J/images.png" alt="Warner Bros. Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="movies.html">Movies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tvshows.html">TV Shows</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="news.html">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="store.html">Store</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <footer>
-        <p>&copy; 2025 Warner Bros. All rights reserved. Designed by Kagiso Mmolawa.</p>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1 class="display-3 fw-bold">Contact Us</h1>
+            <p class="lead">We'd love to hear from you!</p>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="container">
+        <div class="contact-info">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-4 mb-md-0">
+                    <h3 class="mb-4">Get in Touch</h3>
+                    <p><i class="fas fa-phone"></i> <strong>Phone:</strong> 75826717</p>
+                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:cse24-021@thuto.bac.sc.bw" class="text-warning">cse24-021@thuto.bac.sc.bw</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> Warner Bros. Studios, Burbank, CA</p>
+                </div>
+                <div class="col-md-6 text-center text-md-start">
+                    <h3 class="mb-4">Business Hours</h3>
+                    <p><i class="far fa-clock"></i> <strong>Monday - Friday:</strong> 9:00 AM - 6:00 PM</p>
+                    <p><i class="far fa-clock"></i> <strong>Saturday:</strong> 10:00 AM - 4:00 PM</p>
+                    <p><i class="far fa-clock"></i> <strong>Sunday:</strong> Closed</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+            <h2 class="text-center mb-4">Send Us a Message</h2>
+            <form id="contactForm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-submit">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p>&copy; 2025 Warner Bros. All rights reserved. Designed by Kagiso Mmolawa.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
 
+    <!-- Toast Notification -->
+    <div class="toast-container">
+        <div class="toast align-items-center text-white" role="alert" aria-live="assertive" aria-atomic="true" id="successToast">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="fas fa-check-circle me-2"></i> Your message has been sent successfully!
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
+        // Initialize toast
+        const toastEl = document.getElementById('successToast');
+        const toast = new bootstrap.Toast(toastEl, {
+            autohide: true,
+            delay: 3000
+        });
+
         // Handle form submission
         document.getElementById("contactForm").addEventListener("submit", function(event) {
             event.preventDefault();  // Prevent form from submitting
 
-            // Show the popup
-            document.getElementById("popupMessage").style.display = "block";
+            // Show the toast notification
+            toast.show();
 
             // Reset the form
             document.getElementById("contactForm").reset();
-
-            // Hide the popup after 3 seconds
-            setTimeout(function() {
-                document.getElementById("popupMessage").style.display = "none";
-            }, 3000);
         });
     </script>
 </body>
