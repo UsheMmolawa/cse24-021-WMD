@@ -1,158 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="https://i.postimg.cc/qBb6VkSQ/e0b67080-ce61-41ef-aa42-e0724fda0266.avif" type="image/png">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warner Bros. Store</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background: #0e0e0e;
             color: white;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #111;
-            padding: 1em 2em;
+            min-height: 100vh;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
         }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 15px;
+        
+        .navbar {
+            background-color: #111 !important;
+            padding: 0.8rem 2rem;
         }
-
+        
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        
+        .nav-link:hover {
+            color: #FFD700 !important;
+        }
+        
+        .cart-icon {
+            position: relative;
+        }
+        
         .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
             background: #FFD700;
             color: black;
-            padding: 2px 8px;
-            border-radius: 12px;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
             font-weight: bold;
-            margin-left: 8px;
         }
-
+        
         .hero {
-            background-image: url('images/store-banner.jpg'); /* Optional banner image */
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://i.postimg.cc/8zQJZQKX/warner-bros-background.jpg');
             background-size: cover;
             background-position: center;
-            padding: 80px 20px;
+            padding: 100px 20px;
             text-align: center;
+            margin-bottom: 40px;
         }
-
+        
         .hero h1 {
-            font-size: 3em;
-            margin: 0;
+            font-size: 3.5rem;
+            font-weight: bold;
             color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
-
-        .store-section {
-            padding: 2em;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
+        
         .product-card {
             background: #1c1c1c;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.7);
-            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
-
-        .product-card img {
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-img {
             width: 100%;
             height: 250px;
             object-fit: cover;
         }
-
-        .product-card h3 {
-            margin: 10px 0;
+        
+        .product-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-title {
+            color: #FFD700;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+        
+        .btn-gold {
+            background-color: #FFD700;
+            color: black;
+            font-weight: bold;
+            border: none;
+            padding: 8px 16px;
+            margin-top: auto;
+        }
+        
+        .btn-gold:hover {
+            background-color: #e6c200;
+            color: black;
+        }
+        
+        footer {
+            background-color: #111;
+            color: #aaa;
+            padding: 2rem 0;
+            margin-top: auto;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        .footer-links a:hover {
             color: #FFD700;
         }
-
-        .product-card p {
-            color: #ccc;
-        }
-
-        .product-card button {
-            background: #FFD700;
-            border: none;
-            color: black;
-            padding: 10px 20px;
-            margin-bottom: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            border-radius: 5px;
-        }
-
-        .product-card button:hover {
-            background: #e6c200;
-        }
-
-        footer {
-            background: #111;
+        
+        .social-icons a {
             color: #aaa;
-            text-align: center;
-            padding: 1em;
-            margin-top: 2em;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #FFD700;
+        }
+        
+        .copyright {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            margin-top: 20px;
         }
     </style>
+    <link rel="icon" href="https://i.postimg.cc/qBb6VkSQ/e0b67080-ce61-41ef-aa42-e0724fda0266.avif" type="image/png">
 </head>
 <body>
-
-    <header>
-        <h2>Warner Bros.</h2>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="movies.html">Movies</a>
-            <a href="tvshows.html">TV Shows</a>
-            <a href="news.html">News</a>
-            <a href="store.html">Store</a>
-            <a href="contact.html">Contact</a>
-            <a href="cart.html">Cart</a>
-            <span id="cart" title="Items in cart">🛒 <span class="cart-count" id="cart-count">0</span></span>
-        </nav>
-    </header>
-
-    <div class="hero">
-        <h1>Warner Bros. Store</h1>
-    </div>
-
-    <section class="store-section">
-        <div class="product-card">
-            <img src="https://i.postimg.cc/MGkW9sZw/download-1.jpg" alt="Batman T-Shirt">
-            <h3>Batman Logo T-Shirt</h3>
-            <p>$20.00</p>
-            <button onclick="addToCart('Batman Logo T-Shirt', 20)">Add to Cart</button>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">WARNER BROS.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="movies.html">Movies</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tvshows.html">TV Shows</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="store.html">Store</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link cart-icon" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count" id="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
 
-        <div class="product-card">
-            <img src="https://i.postimg.cc/DyMfXvt8/images-2.jpg" alt="Harry Potter T-Shirt">
-            <h3>Hogwarts Crest T-Shirt</h3>
-            <p>$22.00</p>
-            <button onclick="addToCart('Hogwarts Crest T-Shirt', 22)">Add to Cart</button>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="display-3">WARNER BROS. STORE</h1>
+            <p class="lead">Official merchandise from your favorite Warner Bros. franchises</p>
         </div>
-
-        <div class="product-card">
-            <img src="https://i.postimg.cc/6535q2bk/download.jpg" alt="Friends T-Shirt">
-            <h3>Friends Logo T-Shirt</h3>
-            <p>$18.00</p>
-            <button onclick="addToCart('Friends Logo T-Shirt', 18)">Add to Cart</button>
-        </div>
-
-        <!-- Add more products as needed -->
     </section>
 
+    <!-- Products Section -->
+    <section class="container mb-5">
+        <div class="row g-4">
+            <!-- Product 1 -->
+            <div class="col-md-4 col-sm-6">
+                <div class="product-card">
+                    <img src="https://i.postimg.cc/MGkW9sZw/download-1.jpg" alt="Batman T-Shirt" class="product-img">
+                    <div class="product-body">
+                        <h3 class="product-title">Batman Logo T-Shirt</h3>
+                        <p class="product-price">$20.00</p>
+                        <button class="btn btn-gold w-100" onclick="addToCart('Batman Logo T-Shirt', 20)">
+                            Add to Cart <i class="fas fa-cart-plus ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="col-md-4 col-sm-6">
+                <div class="product-card">
+                    <img src="https://i.postimg.cc/DyMfXvt8/images-2.jpg" alt="Harry Potter T-Shirt" class="product-img">
+                    <div class="product-body">
+                        <h3 class="product-title">Hogwarts Crest T-Shirt</h3>
+                        <p class="product-price">$22.00</p>
+                        <button class="btn btn-gold w-100" onclick="addToCart('Hogwarts Crest T-Shirt', 22)">
+                            Add to Cart <i class="fas fa-cart-plus ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="col-md-4 col-sm-6">
+                <div class="product-card">
+                    <img src="https://i.postimg.cc/6535q2bk/download.jpg" alt="Friends T-Shirt" class="product-img">
+                    <div class="product-body">
+                        <h3 class="product-title">Friends Logo T-Shirt</h3>
+                        <p class="product-price">$18.00</p>
+                        <button class="btn btn-gold w-100" onclick="addToCart('Friends Logo T-Shirt', 18)">
+                            Add to Cart <i class="fas fa-cart-plus ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Add more products here as needed -->
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        &copy; 2025 Warner Bros. Entertainment Inc. All rights reserved.
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-4">WARNER BROS.</h5>
+                    <p>Bringing your favorite stories to life through movies, TV shows, and exclusive merchandise.</p>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-4">Quick Links</h5>
+                    <div class="footer-links d-flex flex-column">
+                        <a href="index.html">Home</a>
+                        <a href="movies.html">Movies</a>
+                        <a href="tvshows.html">TV Shows</a>
+                        <a href="news.html">News</a>
+                        <a href="store.html">Store</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-uppercase mb-4">Connect With Us</h5>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright text-center">
+                <p class="mb-0">&copy; 2025 Warner Bros. Entertainment Inc. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
     <script>
         // Get the cart count from localStorage
         function updateCartCount() {
@@ -163,17 +292,39 @@
         // Add to cart function
         function addToCart(productName, productPrice) {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart.push({ productName, productPrice });
+            cart.push({ 
+                productName, 
+                productPrice,
+                id: Date.now() // Add unique ID for each item
+            });
             localStorage.setItem('cart', JSON.stringify(cart));
             updateCartCount();
-            alert(`${productName} added to cart!`);
+            
+            // Show toast notification
+            const toast = document.createElement('div');
+            toast.className = 'position-fixed bottom-0 end-0 p-3';
+            toast.style.zIndex = '11';
+            toast.innerHTML = `
+                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-success text-white">
+                        <strong class="me-auto">Item Added</strong>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body bg-dark text-white">
+                        ${productName} added to cart!
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(toast);
+            
+            // Remove toast after 3 seconds
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
         }
 
         // Update cart count when the page loads
         document.addEventListener('DOMContentLoaded', updateCartCount);
     </script>
-
 </body>
 </html>
-
-
