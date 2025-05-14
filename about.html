@@ -5,84 +5,317 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warner Bros. | About</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
         body {
             font-family: 'Open Sans', sans-serif;
             background: radial-gradient(circle, #ff9800, #ff5722);
             color: white;
-            text-align: center;
             margin: 0;
             padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        header {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 20px;
+        
+        .navbar {
+            background: rgba(0, 0, 0, 0.9) !important;
+            padding: 15px 0;
         }
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
+        
+        .navbar-brand img {
+            height: 50px;
+        }
+        
+        .nav-link {
+            color: white !important;
             font-weight: bold;
+            margin: 0 10px;
+            transition: color 0.3s ease;
         }
-        .container {
-            padding: 50px;
+        
+        .nav-link:hover {
+            color: #ffeb3b !important;
         }
-        footer {
-            margin-top: 50px;
-            padding: 20px;
+        
+        .about-hero {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.5);
+            margin-bottom: 50px;
+        }
+        
+        .about-content {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: white;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            background-color: #ff5722;
+            border: 4px solid white;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid white;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+        }
+        
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid white;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+        
+        .right::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            position: relative;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .footer {
             background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 30px 0;
+            margin-top: auto;
         }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            nav a {
-                font-size: 14px; /* Smaller font for mobile */
-                margin: 0 10px;
-            }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
         }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 10px;
+        
+        .social-icons a:hover {
+            color: #ffeb3b;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
             }
-            nav a {
-                display: block; /* Stack links vertically */
-                margin: 5px 0;
-                font-size: 16px;
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+            
+            .left::after, .right::after {
+                left: 18px;
+            }
+            
+            .right {
+                left: 0%;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <img src="https://i.postimg.cc/15pj5d2J/images.png" alt="Warner Bros. Logo" width="150">
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="movies.html">Movies</a>
-            <a href="tvshows.html">TV Shows</a>
-            <a href="about.html">About</a>
-            <a href="news.html">News</a>
-            <a href="cart.html">Cart</a>
-            <a href="store.html">Store</a>
-        </nav>
-    </header>
-    <div class="container">
-        <h1>About Warner Bros.</h1>
-        <p>Warner Bros. is a globally recognized entertainment company, known for producing some of the most iconic films and TV shows in history.</p>
-        <p>Founded in 1923, Warner Bros. has brought to life legendary characters, unforgettable stories, and groundbreaking entertainment experiences.</p>
-        <p>With a commitment to creativity and innovation, Warner Bros. continues to be a leader in the entertainment industry, shaping the future of film and television.</p>
-    </div>
-    <footer>
-        <p>&copy; 2025 Warner Bros. All rights reserved. Designed by Kagiso Mmolawa.</p>
-    </footer>
-</body>
-</html>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="https://i.postimg.cc/15pj5d2J/images.png" alt="Warner Bros. Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="movies.html">Movies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tvshows.html">TV Shows</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="news.html">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="store.html">Store</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-        <p>&copy; 2025 Warner Bros. All rights reserved. Designed by Kagiso Mmolawa.</p>
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1 class="display-3 fw-bold">About Warner Bros.</h1>
+            <p class="lead">A century of storytelling excellence</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="container">
+        <div class="about-content">
+            <h2 class="mb-4">Our Story</h2>
+            <p>Warner Bros. is a globally recognized entertainment company, known for producing some of the most iconic films and TV shows in history.</p>
+            <p>Founded in 1923, Warner Bros. has brought to life legendary characters, unforgettable stories, and groundbreaking entertainment experiences.</p>
+            <p>With a commitment to creativity and innovation, Warner Bros. continues to be a leader in the entertainment industry, shaping the future of film and television.</p>
+        </div>
+
+        <!-- Timeline Section -->
+        <h2 class="text-center my-5">Our History</h2>
+        <div class="timeline">
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <h3>1923</h3>
+                    <p>Warner Bros. is founded by brothers Harry, Albert, Sam, and Jack Warner. The company begins as a small production studio in Hollywood.</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <h3>1927</h3>
+                    <p>Release of "The Jazz Singer," the first feature-length motion picture with synchronized dialogue sequences, revolutionizing the film industry.</p>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <h3>1930s-1940s</h3>
+                    <p>The Golden Age of Warner Bros. with iconic gangster films, musicals, and the introduction of beloved characters like Bugs Bunny.</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <h3>1960s-1970s</h3>
+                    <p>Expansion into television production with hits like "The Flintstones" and "Batman," while continuing successful film productions.</p>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <h3>1989</h3>
+                    <p>Launch of the modern Batman franchise with Tim Burton's "Batman," starring Michael Keaton and Jack Nicholson.</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <h3>2001</h3>
+                    <p>Beginning of the Harry Potter film series, which would become one of the most successful franchises in history.</p>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <h3>Present Day</h3>
+                    <p>Continuing to produce blockbuster films and hit TV shows while expanding into streaming services and global markets.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p>&copy; 2025 Warner Bros. All rights reserved. Designed by Kagiso Mmolawa.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
