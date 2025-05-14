@@ -3,360 +3,469 @@
 <head>
     <link rel="icon" href="https://i.postimg.cc/qBb6VkSQ/e0b67080-ce61-41ef-aa42-e0724fda0266.avif" type="image/png">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warner Bros. | Home</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #1a237e, #4caf50); /* Cool blue and green gradient */
-            color: black; /* Changed text color to black */
-            text-align: center;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #1a237e, #4caf50);
+            color: black;
             margin: 0;
             padding: 0;
         }
-        header {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            position: relative;
+        
+        .navbar {
+            background: rgba(0, 0, 0, 0.9) !important;
+            padding: 15px 0;
         }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
+        
+        .navbar-brand img {
+            height: 50px;
         }
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
+        
+        .nav-link {
+            color: white !important;
             font-weight: bold;
+            margin: 0 10px;
             transition: color 0.3s ease;
         }
-        nav a:hover {
-            color: #ffeb3b;
+        
+        .nav-link:hover {
+            color: #ffeb3b !important;
         }
-        .logo {
-            width: 150px;
-        }
-        .content {
-            padding: 50px;
-        }
-        .movies, .tv-shows {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
+        
         .card {
             background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
+            border: none;
             border-radius: 10px;
-            width: 200px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            overflow: hidden;
+            margin-bottom: 20px;
         }
+        
         .card:hover {
-            transform: scale(1.05);
+            transform: translateY(-10px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             background: rgba(255, 255, 255, 0.2);
         }
-        .card img {
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
+        
+        .card-img-top {
+            border-radius: 10px 10px 0 0;
+            transition: transform 0.5s ease;
         }
-        .card img:hover {
-            transform: scale(1.1);
+        
+        .card:hover .card-img-top {
+            transform: scale(1.05);
         }
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.8);
+        
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffeb3b;
+            margin-top: 10px;
+        }
+        
+        .card-text {
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        h1, h2 {
+            text-transform: uppercase;
+            color: #ffeb3b;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-section {
+            padding: 80px 0;
             text-align: center;
         }
-        .card p {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 10px;
-            color: #ffeb3b;
-            transition: color 0.3s ease;
-        }
-        .card p:hover {
-            color: #ffffff;
-        }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            color: #ffeb3b;
-        }
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-        .contact {
-            margin-top: 50px;
-            font-size: 1.2rem;
-        }
-        .contact a {
-            color: #ffeb3b;
-            text-decoration: none;
-            font-weight: bold;
-        }
+        
         .about-section {
             background-color: rgba(0, 0, 0, 0.8);
-            padding: 50px;
+            padding: 50px 0;
+            margin: 50px 0;
+        }
+        
+        .contact-section {
+            padding: 50px 0;
+        }
+        
+        .footer {
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 30px 0;
             margin-top: 50px;
-            text-align: left;
         }
-
-        /* Login/Sign-Up Styling */
-        .login-popup, .signup-popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 30px;
-            border-radius: 10px;
+        
+        .social-icons a {
             color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
         }
-        .login-popup input, .signup-popup input {
-            margin: 10px 0;
-            padding: 10px;
-            width: 100%;
-            border: none;
-            border-radius: 5px;
+        
+        .social-icons a:hover {
+            color: #ffeb3b;
         }
-        .login-popup button, .signup-popup button {
-            margin: 10px 0;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
+        
+        .login-btn {
             background-color: #ffeb3b;
-            cursor: pointer;
-        }
-        .login-popup button:hover, .signup-popup button:hover {
-            background-color: #ffca28;
-        }
-        .popup-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-        }
-        .logged-in {
-            font-weight: bold;
-            font-size: 20px;
-        }
-        #login-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: #ffeb3b;
-            padding: 10px 30px;
-            font-size: 18px;
-            font-weight: bold;
             color: black;
+            font-weight: bold;
             border: none;
+            padding: 8px 20px;
             border-radius: 5px;
-            cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        #login-btn:hover {
+        
+        .login-btn:hover {
             background-color: #ffca28;
+        }
+        
+        .modal-content {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            box-shadow: none;
+        }
+        
+        .btn-primary {
+            background-color: #ffeb3b;
+            color: black;
+            border: none;
+            font-weight: bold;
+        }
+        
+        .btn-primary:hover {
+            background-color: #ffca28;
+        }
+        
+        .modal-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .modal-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .switch-form {
+            color: #ffeb3b;
+            cursor: pointer;
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <header>
-        <img src="https://i.postimg.cc/15pj5d2J/images.png" alt="Warner Bros. Logo" width="150">
-        <nav>
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="movies.html">Movies</a></li>
-                <li><a href="tvshows.html">TV Shows</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-                <li><a href="news.html">News</a></li>
-                <li><a href="cart.html">Cart</a><li>
-                <li><a href="store.html">Store</a><li>
-            </ul>
-        </nav>
-        <button id="login-btn" onclick="openLoginPopup()">Login</button>
-    </header>
-    
-    <div class="content" id="home">
-        <h1>Welcome to Warner Bros.</h1>
-        <p>Where the magic of movies and TV comes to life! Explore our iconic collection of legendary films and shows.</p>
-        
-        <h2 id="movies">Popular Movies</h2>
-        <div class="movies">
-            <div class="card" onclick="redirectTo('https://dopebox.to/watch-movie/watch-the-dark-knight-online-hd-19752.5297326')">
-                <img src="https://i.postimg.cc/tR6r2fqp/unnamed.jpg" alt="Movie poster for The Dark Knight">
-                <p>The Dark Knight</p>
-                <p>Step into the shadows with the caped crusader and his fight against Gotham’s darkest villain.</p>
-            </div>
-            <div class="card" onclick="redirectTo('https://dopebox.to/watch-movie/watch-harry-potter-and-the-philosophers-stone-online-hd-19812.5352007')">
-                <img src="https://i.postimg.cc/2jGcBW2f/Harry-Potter.jpg" alt="Movie poster for Harry Potter: The Philosopher's Stone">
-                <p>Harry Potter</p>
-                <p>Join Harry and friends on their magical journey at Hogwarts – the wizarding world awaits!</p>
-            </div>
-            <div class="card" onclick="redirectTo('https://dopebox.to/watch-movie/watch-inception-online-hd-19764.5297266')">
-               <img src="https://i.postimg.cc/fyqfqxrt/Inception.jpg" alt="Movie poster for Inception">
-                <p>Inception</p>
-                <p>Enter the world of dreams within dreams, where reality is twisted and nothing is as it seems.</p>
-            </div>
-        </div>
-        
-        <h2 id="tv-shows">Popular TV Shows</h2>
-        <div class="tv-shows">
-            <div class="card" onclick="redirectTo('https://dopebox.to/tv/watch-friends-online-hd-39473')">
-                <img src="https://i.postimg.cc/ZnPhr57M/Friends.jpg" alt="TV show poster for Friends">
-                <p>Friends</p>
-                <p>Relive the laughs, love, and iconic moments with Rachel, Ross, Monica, Chandler, Joey, and Phoebe!</p>
-            </div>
-            <div class="card" onclick="redirectTo('https://dopebox.to/tv/watch-the-big-bang-theory-online-hd-39508')">
-                <img src="https://i.postimg.cc/HsKtQ9MF/The-Big-Bang-Theory.jpg" alt="TV show poster for The Big Bang Theory">
-                <p>The Big Bang Theory</p>
-                <p>Get ready for hilarious antics with a group of genius scientists and their unexpected friendships.</p>
-            </div>
-            <div class="card" onclick="redirectTo('https://dopebox.to/tv/watch-game-of-thrones-online-hd-39539')">
-               <img src="https://i.postimg.cc/rpR31pzN/Game-Of-Thrones.jpg" alt="TV show poster for Game of Thrones">
-                <p>Game of Thrones</p>
-                <p>Enter a world of power struggles, dragons, and unforgettable characters. The Iron Throne awaits!</p>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">
+                <img src="https://i.postimg.cc/15pj5d2J/images.png" alt="Warner Bros. Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="movies.html">Movies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tvshows.html">TV Shows</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="news.html">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="store.html">Store</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+                    </li>
+                </ul>
+                <button class="btn login-btn" id="login-btn" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    Login
+                </button>
             </div>
         </div>
-    </div>
-    
-    <div class="about-section" id="about">
-        <h2>About Warner Bros.</h2>
-        <p>Founded in 1923, Warner Bros. is one of the most influential film studios in Hollywood. With a rich history of creating iconic films and TV shows, Warner Bros. has captivated audiences worldwide with unforgettable stories and legendary characters. From Batman and Harry Potter to Game of Thrones and Friends, Warner Bros. continues to entertain and inspire millions.</p>
-    </div>
+    </nav>
 
-    <div class="contact" id="contact">
-        <h2>Contact Us</h2>
-        <p>If you need further assistance or have questions, feel free to reach out to us:</p>
-        <p>Email: <a href="mailto:mmolawaushe2@gmail.com">mmolawaushe2@gmail.com</a></p>
-        <p>Phone: +1 (758) 26717</p>
-    </div>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-4">Welcome to Warner Bros.</h1>
+            <p class="lead">Where the magic of movies and TV comes to life! Explore our iconic collection of legendary films and shows.</p>
+        </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 Warner Bros. All rights reserved. Designed by Kagiso Mmolawa.</p>
+    <!-- Popular Movies Section -->
+    <section class="container my-5">
+        <h2 class="text-center">Popular Movies</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card h-100" onclick="redirectTo('https://dopebox.to/watch-movie/watch-the-dark-knight-online-hd-19752.5297326')">
+                    <img src="https://i.postimg.cc/tR6r2fqp/unnamed.jpg" class="card-img-top" alt="The Dark Knight">
+                    <div class="card-body">
+                        <h5 class="card-title">The Dark Knight</h5>
+                        <p class="card-text">Step into the shadows with the caped crusader and his fight against Gotham's darkest villain.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100" onclick="redirectTo('https://dopebox.to/watch-movie/watch-harry-potter-and-the-philosophers-stone-online-hd-19812.5352007')">
+                    <img src="https://i.postimg.cc/2jGcBW2f/Harry-Potter.jpg" class="card-img-top" alt="Harry Potter">
+                    <div class="card-body">
+                        <h5 class="card-title">Harry Potter</h5>
+                        <p class="card-text">Join Harry and friends on their magical journey at Hogwarts – the wizarding world awaits!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100" onclick="redirectTo('https://dopebox.to/watch-movie/watch-inception-online-hd-19764.5297266')">
+                    <img src="https://i.postimg.cc/fyqfqxrt/Inception.jpg" class="card-img-top" alt="Inception">
+                    <div class="card-body">
+                        <h5 class="card-title">Inception</h5>
+                        <p class="card-text">Enter the world of dreams within dreams, where reality is twisted and nothing is as it seems.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular TV Shows Section -->
+    <section class="container my-5">
+        <h2 class="text-center">Popular TV Shows</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card h-100" onclick="redirectTo('https://dopebox.to/tv/watch-friends-online-hd-39473')">
+                    <img src="https://i.postimg.cc/ZnPhr57M/Friends.jpg" class="card-img-top" alt="Friends">
+                    <div class="card-body">
+                        <h5 class="card-title">Friends</h5>
+                        <p class="card-text">Relive the laughs, love, and iconic moments with Rachel, Ross, Monica, Chandler, Joey, and Phoebe!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100" onclick="redirectTo('https://dopebox.to/tv/watch-the-big-bang-theory-online-hd-39508')">
+                    <img src="https://i.postimg.cc/HsKtQ9MF/The-Big-Bang-Theory.jpg" class="card-img-top" alt="The Big Bang Theory">
+                    <div class="card-body">
+                        <h5 class="card-title">The Big Bang Theory</h5>
+                        <p class="card-text">Get ready for hilarious antics with a group of genius scientists and their unexpected friendships.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100" onclick="redirectTo('https://dopebox.to/tv/watch-game-of-thrones-online-hd-39539')">
+                    <img src="https://i.postimg.cc/rpR31pzN/Game-Of-Thrones.jpg" class="card-img-top" alt="Game of Thrones">
+                    <div class="card-body">
+                        <h5 class="card-title">Game of Thrones</h5>
+                        <p class="card-text">Enter a world of power struggles, dragons, and unforgettable characters. The Iron Throne awaits!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <h2 class="text-center">About Warner Bros.</h2>
+            <p class="text-center">Founded in 1923, Warner Bros. is one of the most influential film studios in Hollywood. With a rich history of creating iconic films and TV shows, Warner Bros. has captivated audiences worldwide with unforgettable stories and legendary characters. From Batman and Harry Potter to Game of Thrones and Friends, Warner Bros. continues to entertain and inspire millions.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="text-center">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center">
+                    <p>If you need further assistance or have questions, feel free to reach out to us:</p>
+                    <p><i class="fas fa-envelope me-2"></i> <a href="mailto:mmolawaushe2@gmail.com" class="text-warning">mmolawaushe2@gmail.com</a></p>
+                    <p><i class="fas fa-phone me-2"></i> +1 (758) 26717</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p>&copy; 2025 Warner Bros. All rights reserved. Designed by Kagiso Mmolawa.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
 
-    <!-- Login Popup -->
-    <div class="login-popup" id="loginPopup">
-        <span class="popup-close" onclick="closeLoginPopup()">&times;</span>
-        <h2>Login</h2>
-        <form id="loginForm">
-            <input type="text" id="loginUsername" placeholder="Username" required><br>
-            <input type="password" id="loginPassword" placeholder="Password" required><br>
-            <button type="submit">Login</button>
-        </form>
-        <p>Don't have an account? <span style="color: #ffeb3b; cursor: pointer;" onclick="openSignUpPopup()">Sign Up</span></p>
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="loginUsername" placeholder="Username" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                    <p class="text-center mt-3">Don't have an account? <span class="switch-form" onclick="switchToSignup()">Sign Up</span></p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Sign Up Popup -->
-    <div class="signup-popup" id="signupPopup">
-        <span class="popup-close" onclick="closeSignUpPopup()">&times;</span>
-        <h2>Sign Up</h2>
-        <form id="signupForm">
-            <input type="text" id="signupUsername" placeholder="Username" required><br>
-            <input type="email" id="signupEmail" placeholder="Email" required><br>
-            <input type="password" id="signupPassword" placeholder="Password" required><br>
-            <input type="password" id="confirmPassword" placeholder="Confirm Password" required><br>
-            <button type="submit">Sign Up</button>
-        </form>
-        <p>Already have an account? <span style="color: #ffeb3b; cursor: pointer;" onclick="openLoginPopup()">Login</span></p>
+    <!-- Signup Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sign Up</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="signupForm">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="signupUsername" placeholder="Username" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="signupEmail" placeholder="Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" id="signupPassword" placeholder="Password" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+                    </form>
+                    <p class="text-center mt-3">Already have an account? <span class="switch-form" onclick="switchToLogin()">Login</span></p>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script>
         let users = JSON.parse(localStorage.getItem('users')) || [];
         let loggedInUser = JSON.parse(localStorage.getItem('loggedInUser')) || null;
 
-        // Open login popup
-        function openLoginPopup() {
-            document.getElementById('loginPopup').style.display = 'block';
+        // Initialize modals
+        var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+        var signupModal = new bootstrap.Modal(document.getElementById('signupModal'));
+
+        // Switch between login and signup modals
+        function switchToSignup() {
+            loginModal.hide();
+            signupModal.show();
         }
 
-        // Close login popup
-        function closeLoginPopup() {
-            document.getElementById('loginPopup').style.display = 'none';
+        function switchToLogin() {
+            signupModal.hide();
+            loginModal.show();
         }
-
-        // Open sign-up popup
-        function openSignUpPopup() {
-            document.getElementById('signupPopup').style.display = 'block';
-        }
-
-        // Close sign-up popup
-        function closeSignUpPopup() {
-            document.getElementById('signupPopup').style.display = 'none';
-        }
-
-        // Handle sign-up form submission with duplicate username check
-document.getElementById('signupForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    let username = document.getElementById('signupUsername').value.trim();
-    let email = document.getElementById('signupEmail').value.trim();
-    let password = document.getElementById('signupPassword').value;
-    let confirmPassword = document.getElementById('confirmPassword').value;
-
-    if (password !== confirmPassword) {
-        alert('Passwords do not match!');
-        return;
-    }
-
-    // Check if username already exists
-    if (users.some(u => u.username === username)) {
-        alert('Username already exists! Please choose another one.');
-        return;
-    }
-
-    let newUser = { username, email, password };
-    users.push(newUser);
-    localStorage.setItem('users', JSON.stringify(users));
-    closeSignUpPopup();
-    alert('Sign-up successful! Please log in.');
-});
-
-        // ✅ Add this to handle login form submission correctly
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    let username = document.getElementById('loginUsername').value.trim();
-    let password = document.getElementById('loginPassword').value;
-
-    let matchedUser = users.find(u => u.username === username && u.password === password);
-    if (matchedUser) {
-        localStorage.setItem('loggedInUser', JSON.stringify(matchedUser));
-        closeLoginPopup();
-        alert('Login successful!');
-        document.getElementById('login-btn').textContent = matchedUser.username;
-    } else {
-        alert('Invalid username or password. Please try again or sign up.');
-    }
-});
-
-       // Redirect to movie or TV show link in a new tab
-function redirectTo(url) {
-    window.open(url, '_blank');
-}
-
 
         // Set login button text if logged in
         if (loggedInUser) {
             document.getElementById('login-btn').textContent = loggedInUser.username;
+            document.getElementById('login-btn').classList.add('logged-in');
+        }
+
+        // Handle sign-up form submission
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let username = document.getElementById('signupUsername').value.trim();
+            let email = document.getElementById('signupEmail').value.trim();
+            let password = document.getElementById('signupPassword').value;
+            let confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            // Check if username already exists
+            if (users.some(u => u.username === username)) {
+                alert('Username already exists! Please choose another one.');
+                return;
+            }
+
+            let newUser = { username, email, password };
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            signupModal.hide();
+            alert('Sign-up successful! Please log in.');
+        });
+
+        // Handle login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let username = document.getElementById('loginUsername').value.trim();
+            let password = document.getElementById('loginPassword').value;
+
+            let matchedUser = users.find(u => u.username === username && u.password === password);
+            if (matchedUser) {
+                localStorage.setItem('loggedInUser', JSON.stringify(matchedUser));
+                loginModal.hide();
+                alert('Login successful!');
+                document.getElementById('login-btn').textContent = matchedUser.username;
+                document.getElementById('login-btn').classList.add('logged-in');
+                location.reload(); // Refresh to show logged in state
+            } else {
+                alert('Invalid username or password. Please try again or sign up.');
+            }
+        });
+
+        // Redirect to movie or TV show link in a new tab
+        function redirectTo(url) {
+            window.open(url, '_blank');
         }
     </script>
 </body>
 </html>
-
-
