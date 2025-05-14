@@ -5,153 +5,302 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warner Bros. | Movies</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
         body {
             font-family: 'Rubik Glitch', cursive;
             background: radial-gradient(circle, #ff9800, #ff5722);
             color: white;
             text-align: center;
-            margin: 0;
-            padding: 0;
         }
-        header {
+        .navbar {
+            background: rgba(0, 0, 0, 0.9) !important;
+        }
+        .navbar-brand img {
+            height: 40px;
+        }
+        .nav-link {
+            color: white !important;
+            font-weight: bold;
+        }
+        .category-label {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        .movie-card {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+            border: none;
+            cursor: pointer;
+            height: 100%;
+        }
+        .movie-card:hover {
+            transform: scale(1.05);
+        }
+        .movie-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .movie-card-body {
+            padding: 15px;
+        }
+        .movie-card-title {
+            font-size: 1rem;
+            margin-bottom: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .movies-row {
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding-bottom: 20px;
+            margin-left: -5px;
+            margin-right: -5px;
+        }
+        .movies-row::-webkit-scrollbar {
+            display: none;
+        }
+        .movies-col {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        footer {
             background: rgba(0, 0, 0, 0.9);
-            padding: 20px;
+            padding: 30px 0;
+            margin-top: 50px;
         }
-        nav a {
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        .social-icons a:hover {
+            color: #ff9800;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .footer-links a {
             color: white;
             margin: 0 15px;
             text-decoration: none;
-            font-weight: bold;
         }
-        .container {
-            padding: 50px;
+        .footer-links a:hover {
+            color: #ff9800;
         }
-        .section {
-            margin-bottom: 40px;
+        .page-header {
+            padding: 60px 0 30px;
         }
-        .movies {
-            display: flex;
-            overflow-x: auto;
-            gap: 20px;
-            padding: 20px;
-            scrollbar-width: none;
-        }
-        .movies::-webkit-scrollbar {
-            display: none;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 10px;
-            width: 200px;
-            text-align: center;
-            flex: 0 0 auto;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-        }
-        .card:hover {
-            transform: scale(1.1);
-        }
-        .card img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .category-label {
-            font-size: 1.5em;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.9);
+        @media (max-width: 768px) {
+            .movie-card img {
+                height: 250px;
+            }
+            .footer-links a {
+                margin: 0 10px 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <img src="https://i.postimg.cc/15pj5d2J/images.png" alt="Warner Bros. Logo" width="150">
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="movies.html">Movies</a>
-            <a href="tvshows.html">TV Shows</a>
-            <a href="about.html">About</a>
-            <a href="news.html">News</a>
-            <a href="cart.html">Cart</a>
-            <a href="store.html">Store</a>
-        </nav>
-    </header>
-    <div class="container">
-        <h1>Movies</h1>
-        <p>Explore the latest and greatest movies from Warner Bros.</p>
-
-        <section class="section">
-            <div class="category-label">Trending Now</div>
-            <div class="movies">
-                <div class="card" onclick="window.open('https://dopebox.to/watch-movie/watch-the-dark-knight-online-hd-19752.5297326', '_blank')">
-                    <img src="https://i.postimg.cc/tR6r2fqp/unnamed.jpg" alt="The Dark Knight movie poster">
-                    <p>The Dark Knight</p>
-                </div>
-                <div class="card" onclick="window.open('https://dopebox.to/watch-movie/watch-harry-potter-and-the-philosophers-stone-online-hd-19812.5352007', '_blank')">
-                    <img src="https://i.postimg.cc/2jGcBW2f/Harry-Potter.jpg" alt="Harry Potter movie poster">
-                    <p>Harry Potter</p>
-                </div>
-                <div class="card" onclick="window.open('https://dopebox.to/watch-movie/watch-inception-online-hd-19764.5297266', '_blank')">
-                    <img src="https://i.postimg.cc/fyqfqxrt/Inception.jpg" alt="Inception movie poster">
-                    <p>Inception</p>
-                </div>
-                <div class="card" onclick="window.open('https://dopebox.to/watch-movie/watch-dune-part-two-online-hd-106510.10331785', '_blank')">
-                    <img src="https://i.postimg.cc/VsJD6n6H/Dune2.jpg" alt="Dune: Part Two movie poster">
-                    <p>Dune: Part Two</p>
-                </div>
-                <div class="card" onclick="window.open('https://dopebox.to/watch-movie/watch-interstellar-online-hd-19788.5297302', '_blank')">
-                    <img src="https://i.postimg.cc/HLS9WkCg/Interstellar.jpg" alt="Interstellar movie poster">
-                    <p>Interstellar</p>
-                </div>
-                <div class="card" onclick="window.open('https://dopebox.to/watch-movie/watch-avatar-the-way-of-water-online-hd-79936.9224431', '_blank')">
-                    <img src="https://i.postimg.cc/TPTDDMc3/Avatar2.jpg" alt="Avatar: The Way of Water movie poster">
-                    <p>Avatar: The Way of Water</p>
-                </div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="https://i.postimg.cc/15pj5d2J/images.png" alt="Warner Bros. Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="movies.html">Movies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tvshows.html">TV Shows</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="news.html">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="store.html">Store</a>
+                    </li>
+                </ul>
             </div>
-        </section>
+        </div>
+    </nav>
 
-        <section class="section">
-            <div class="category-label">New Releases</div>
-            <div class="movies">
-                <div class="card" onclick="window.open('https://dopebox.to/watch-movie/watch-aquaman-and-the-lost-kingdom-online-hd-104119.10255471', '_blank')">
-                    <img src="https://i.postimg.cc/tRcWmc9B/Aquaman2.jpg" alt="Aquaman and the Lost Kingdom movie poster">
-                    <p>Aquaman and the Lost Kingdom</p>
-                </div>
-                <div class="card" onclick="window.open('https://dopebox.to/watch-movie/watch-barbie-online-hd-693.9766228', '_blank')">
-                    <img src="https://i.postimg.cc/651jccPK/Barbie-2023-poster.jpg" alt="Barbie movie poster">
-                    <p>Barbie</p>
-                </div>
-                <div class="card" onclick="window.open('https://dopebox.to/watch-movie/watch-joker-folie-a-deux-online-hd-114916.10717978', '_blank')">
-                    <img src="https://i.postimg.cc/YqgRN7Q6/Joker2.jpg" alt="Joker: Folie à Deux movie poster">
-                    <p>Joker: Folie à Deux</p>
-                </div>
-                <div class="card" onclick="window.open('https://dopebox.to/watch-movie/watch-shazam-fury-of-the-gods-online-hd-91642.9445309', '_blank')">
-                    <img src="https://i.postimg.cc/zfwFsFxV/Shazam2.jpg" alt="Shazam! Fury of the Gods movie poster">
-                    <p>Shazam! Fury of the Gods</p>
-                </div>
-                <div class="card" onclick="window.open('https://dopebox.to/watch-movie/watch-black-adam-online-hd-82087.9064306', '_blank')">
-                    <img src="https://i.postimg.cc/YCW33HgN/Black-Adam-film-poster.jpg" alt="Black Adam movie poster">
-                    <p>Black Adam</p>
-                </div>
-                <div class="card" onclick="window.open('https://dopebox.to/watch-movie/watch-the-flash-online-hd-97519.9658585', '_blank')">
-                    <img src="https://i.postimg.cc/j5s4tn1v/The-Flash.jpg" alt="The Flash movie poster">
-                    <p>The Flash</p>
-                </div>
-            </div>
-        </section>
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1 class="display-4">Movies</h1>
+            <p class="lead">Explore the latest and greatest movies from Warner Bros.</p>
+        </div>
     </div>
 
+    <!-- Trending Now Section -->
+    <section class="container mb-5">
+        <h2 class="category-label">Trending Now</h2>
+        <div class="row movies-row">
+            <div class="col-md-2 movies-col">
+                <div class="movie-card" onclick="window.open('https://dopebox.to/watch-movie/watch-the-dark-knight-online-hd-19752.5297326', '_blank')">
+                    <img src="https://i.postimg.cc/tR6r2fqp/unnamed.jpg" class="card-img-top" alt="The Dark Knight movie poster">
+                    <div class="movie-card-body">
+                        <h5 class="movie-card-title">The Dark Knight</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 movies-col">
+                <div class="movie-card" onclick="window.open('https://dopebox.to/watch-movie/watch-harry-potter-and-the-philosophers-stone-online-hd-19812.5352007', '_blank')">
+                    <img src="https://i.postimg.cc/2jGcBW2f/Harry-Potter.jpg" class="card-img-top" alt="Harry Potter movie poster">
+                    <div class="movie-card-body">
+                        <h5 class="movie-card-title">Harry Potter</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 movies-col">
+                <div class="movie-card" onclick="window.open('https://dopebox.to/watch-movie/watch-inception-online-hd-19764.5297266', '_blank')">
+                    <img src="https://i.postimg.cc/fyqfqxrt/Inception.jpg" class="card-img-top" alt="Inception movie poster">
+                    <div class="movie-card-body">
+                        <h5 class="movie-card-title">Inception</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 movies-col">
+                <div class="movie-card" onclick="window.open('https://dopebox.to/watch-movie/watch-dune-part-two-online-hd-106510.10331785', '_blank')">
+                    <img src="https://i.postimg.cc/VsJD6n6H/Dune2.jpg" class="card-img-top" alt="Dune: Part Two movie poster">
+                    <div class="movie-card-body">
+                        <h5 class="movie-card-title">Dune: Part Two</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 movies-col">
+                <div class="movie-card" onclick="window.open('https://dopebox.to/watch-movie/watch-interstellar-online-hd-19788.5297302', '_blank')">
+                    <img src="https://i.postimg.cc/HLS9WkCg/Interstellar.jpg" class="card-img-top" alt="Interstellar movie poster">
+                    <div class="movie-card-body">
+                        <h5 class="movie-card-title">Interstellar</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 movies-col">
+                <div class="movie-card" onclick="window.open('https://dopebox.to/watch-movie/watch-avatar-the-way-of-water-online-hd-79936.9224431', '_blank')">
+                    <img src="https://i.postimg.cc/TPTDDMc3/Avatar2.jpg" class="card-img-top" alt="Avatar: The Way of Water movie poster">
+                    <div class="movie-card-body">
+                        <h5 class="movie-card-title">Avatar: The Way of Water</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Releases Section -->
+    <section class="container mb-5">
+        <h2 class="category-label">New Releases</h2>
+        <div class="row movies-row">
+            <div class="col-md-2 movies-col">
+                <div class="movie-card" onclick="window.open('https://dopebox.to/watch-movie/watch-aquaman-and-the-lost-kingdom-online-hd-104119.10255471', '_blank')">
+                    <img src="https://i.postimg.cc/tRcWmc9B/Aquaman2.jpg" class="card-img-top" alt="Aquaman and the Lost Kingdom movie poster">
+                    <div class="movie-card-body">
+                        <h5 class="movie-card-title">Aquaman and the Lost Kingdom</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 movies-col">
+                <div class="movie-card" onclick="window.open('https://dopebox.to/watch-movie/watch-barbie-online-hd-693.9766228', '_blank')">
+                    <img src="https://i.postimg.cc/651jccPK/Barbie-2023-poster.jpg" class="card-img-top" alt="Barbie movie poster">
+                    <div class="movie-card-body">
+                        <h5 class="movie-card-title">Barbie</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 movies-col">
+                <div class="movie-card" onclick="window.open('https://dopebox.to/watch-movie/watch-joker-folie-a-deux-online-hd-114916.10717978', '_blank')">
+                    <img src="https://i.postimg.cc/YqgRN7Q6/Joker2.jpg" class="card-img-top" alt="Joker: Folie à Deux movie poster">
+                    <div class="movie-card-body">
+                        <h5 class="movie-card-title">Joker: Folie à Deux</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 movies-col">
+                <div class="movie-card" onclick="window.open('https://dopebox.to/watch-movie/watch-shazam-fury-of-the-gods-online-hd-91642.9445309', '_blank')">
+                    <img src="https://i.postimg.cc/zfwFsFxV/Shazam2.jpg" class="card-img-top" alt="Shazam! Fury of the Gods movie poster">
+                    <div class="movie-card-body">
+                        <h5 class="movie-card-title">Shazam! Fury of the Gods</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 movies-col">
+                <div class="movie-card" onclick="window.open('https://dopebox.to/watch-movie/watch-black-adam-online-hd-82087.9064306', '_blank')">
+                    <img src="https://i.postimg.cc/YCW33HgN/Black-Adam-film-poster.jpg" class="card-img-top" alt="Black Adam movie poster">
+                    <div class="movie-card-body">
+                        <h5 class="movie-card-title">Black Adam</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 movies-col">
+                <div class="movie-card" onclick="window.open('https://dopebox.to/watch-movie/watch-the-flash-online-hd-97519.9658585', '_blank')">
+                    <img src="https://i.postimg.cc/j5s4tn1v/The-Flash.jpg" class="card-img-top" alt="The Flash movie poster">
+                    <div class="movie-card-body">
+                        <h5 class="movie-card-title">The Flash</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Warner Bros. All rights reserved. Designed by Kagiso Mmolawa.</p>
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="movies.html">Movies</a>
+                <a href="tvshows.html">TV Shows</a>
+                <a href="about.html">About</a>
+                <a href="news.html">News</a>
+                <a href="store.html">Store</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="social-icons mb-4">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p>&copy; 2025 Warner Bros. Entertainment Inc. All rights reserved. Designed by Kagiso Mmolawa.</p>
+        </div>
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
