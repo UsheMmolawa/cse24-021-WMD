@@ -1,169 +1,419 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="https://i.postimg.cc/qBb6VkSQ/e0b67080-ce61-41ef-aa42-e0724fda0266.avif" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warner Bros. | TV Shows</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="https://i.postimg.cc/qBb6VkSQ/e0b67080-ce61-41ef-aa42-e0724fda0266.avif" type="image/png">
+    <!-- Custom CSS -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
         body {
             font-family: 'Rubik Glitch', cursive;
             background: radial-gradient(circle, #ff9800, #ff5722);
             color: white;
-            text-align: center;
             margin: 0;
             padding: 0;
-        }
-        header {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 20px;
-        }
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .container {
-            padding: 50px;
-        }
-        .section {
-            margin-bottom: 40px;
-        }
-        .shows {
+            min-height: 100vh;
             display: flex;
-            overflow-x: auto;
-            gap: 20px;
-            padding: 20px;
-            scrollbar-width: none;
+            flex-direction: column;
         }
-        .shows::-webkit-scrollbar {
-            display: none;
+        
+        .navbar {
+            background: rgba(0, 0, 0, 0.9) !important;
+            padding: 15px 0;
         }
-        .card {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 10px;
-            width: 200px;
-            text-align: center;
-            flex: 0 0 auto;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
+        
+        .navbar-brand img {
+            height: 50px;
         }
-        .card:hover {
+        
+        .nav-link {
+            color: white !important;
+            font-weight: bold;
+            margin: 0 10px;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: #FFD700 !important;
             transform: scale(1.1);
         }
-        .card img {
-            width: 100%;
-            border-radius: 10px;
+        
+        .nav-link.active {
+            color: #FFD700 !important;
+            text-decoration: underline;
         }
+        
+        .hero {
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            text-shadow: 3px 3px 0 #000;
+            margin-bottom: 20px;
+            animation: glitch 1s linear infinite;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            text-shadow: 2px 2px 0 #000;
+        }
+        
         .category-label {
-            font-size: 1.5em;
+            font-size: 2rem;
             font-weight: bold;
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin: 30px 0 20px;
+            text-shadow: 2px 2px 0 #000;
+            animation: glitch 2s linear infinite;
         }
+        
+        .show-card {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            height: 100%;
+            border: none;
+        }
+        
+        .show-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .show-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .show-card-body {
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .show-card-title {
+            font-size: 1.2rem;
+            margin: 0;
+            text-shadow: 1px 1px 0 #000;
+        }
+        
         footer {
-            margin-top: 50px;
-            padding: 20px;
             background: rgba(0, 0, 0, 0.9);
+            padding: 30px 0;
+            margin-top: auto;
+            text-align: center;
         }
-
-        /* Responsive Design */
+        
+        /* Glitch animation */
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px 0 red; }
+            25% { text-shadow: -2px -2px 0 blue; }
+            50% { text-shadow: 2px -2px 0 green; }
+            75% { text-shadow: -2px 2px 0 yellow; }
+            100% { text-shadow: 2px 2px 0 red; }
+        }
+        
+        /* Custom scrollbar for show rows */
+        .shows-row {
+            display: flex;
+            overflow-x: auto;
+            padding: 20px 0;
+            scrollbar-width: thin;
+            scrollbar-color: #ff5722 #ff9800;
+        }
+        
+        .shows-row::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .shows-row::-webkit-scrollbar-track {
+            background: #ff9800;
+            border-radius: 10px;
+        }
+        
+        .shows-row::-webkit-scrollbar-thumb {
+            background-color: #ff5722;
+            border-radius: 10px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .category-label {
+                font-size: 1.8rem;
+            }
+        }
+        
         @media (max-width: 768px) {
-            .container {
-                padding: 20px;
+            .hero h1 {
+                font-size: 2.5rem;
             }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
             .category-label {
-                font-size: 1.2em;
+                font-size: 1.5rem;
             }
-            .card {
-                width: 160px; /* Slightly smaller cards for medium screens */
-            }
-            .shows {
-                gap: 10px; /* Reduced gap between cards */
-            }
-            nav a {
-                font-size: 14px; /* Smaller font for mobile */
-                margin: 0 10px;
+            
+            .show-card img {
+                height: 200px;
             }
         }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 10px;
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
             }
+            
             .category-label {
-                font-size: 1em;
+                font-size: 1.2rem;
             }
-            .card {
-                width: 140px; /* Even smaller cards for small screens */
+            
+            .show-card img {
+                height: 150px;
             }
-            .shows {
-                flex-wrap: wrap; /* Wrap cards to fit in the container */
-                justify-content: center; /* Center the wrapped cards */
-                gap: 15px;
+            
+            .navbar-brand img {
+                height: 40px;
             }
-            .card img {
-                height: 150px; /* Limit image height to avoid overflow */
-                object-fit: cover;
-            }
-            nav {
-                display: block;
-                margin-top: 10px;
-            }
-            nav a {
-                margin: 5px 0; /* Stack the navigation links vertically */
-                display: block;
+            
+            .nav-link {
+                font-size: 0.9rem;
+                margin: 0 5px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <img src="https://i.postimg.cc/15pj5d2J/images.png" alt="Warner Bros. Logo" width="150">
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="movies.html">Movies</a>
-            <a href="tvshows.html">TV Shows</a>
-            <a href="about.html">About</a>
-            <a href="news.html">News</a>
-            <a href="cart.html">Cart</a>
-            <a href="store.html">Store</a>
-        </nav>
-    </header>
-    <div class="container">
-        <h1>TV Shows</h1>
-        <p>Discover the best TV shows from Warner Bros.</p>
-
-        <div class="section">
-            <div class="category-label">Trending Now</div>
-            <div class="shows">
-                <div class="card" onclick="window.open('https://dopebox.to/tv/watch-friends-online-hd-39473', '_blank')"><img src="https://i.postimg.cc/MHzxs7t0/images-3.jpg" alt="Friends"><p>Friends</p></div>
-                <div class="card" onclick="window.open('https://dopebox.to/tv/watch-game-of-thrones-online-hd-39539', '_blank')"><img src="https://i.postimg.cc/tRvmvdrX/images-4.jpg" alt="Game of Thrones"><p>Game of Thrones</p></div>
-                <div class="card" onclick="window.open('https://dopebox.to/tv/watch-the-big-bang-theory-online-hd-39508', '_blank')"><img src="https://i.postimg.cc/vHHbfv4b/images-5.jpg" alt="The Big Bang Theory"><p>The Big Bang Theory</p></div>
-                <div class="card" onclick="window.open('https://dopebox.to/tv/watch-the-witcher-online-hd-29581', '_blank')"><img src="https://i.postimg.cc/FKc4NWBg/images-6.jpg" alt="The Witcher"><p>The Witcher</p></div>
-                <div class="card" onclick="window.open('https://dopebox.to/tv/watch-supernatural-online-hd-39542', '_blank')"><img src="https://i.postimg.cc/sfKRjZw8/images-7.jpg" alt="Supernatural"><p>Supernatural</p></div>
-                <div class="card" onclick="window.open('https://dopebox.to/tv/watch-stranger-things-online-hd-39444', '_blank')"><img src="https://i.postimg.cc/tCTGYCcg/images-8.jpg" alt="Stranger Things"><p>Stranger Things</p></div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="https://i.postimg.cc/15pj5d2J/images.png" alt="Warner Bros. Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="movies.html">Movies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="tvshows.html">TV Shows</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="news.html">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="store.html">Store</a>
+                    </li>
+                </ul>
             </div>
         </div>
+    </nav>
 
-        <div class="section">
-            <div class="category-label">New Releases</div>
-            <div class="shows">
-                <div class="card" onclick="window.open('https://dopebox.to/tv/watch-house-of-the-dragon-online-hd-84837', '_blank')"><img src="https://i.postimg.cc/m25fMWxy/images-9.jpg" alt="House of the Dragon"><p>House of the Dragon</p></div>
-                <div class="card" onclick="window.open('https://dopebox.to/tv/watch-the-last-of-us-online-hd-92254', '_blank')"><img src="https://i.postimg.cc/t4n0NvpQ/images-10.jpg" alt="The Last of Us"><p>The Last of Us</p></div>
-                <div class="card" onclick="window.open('https://dopebox.to/tv/watch-peacemaker-online-hd-76321', '_blank')"><img src="https://i.postimg.cc/Jzff63zy/images-11.jpg" alt="Peacemaker"><p>Peacemaker</p></div>
-                <div class="card" onclick="window.open('https://dopebox.to/tv/watch-ted-lasso-online-hd-63165', '_blank')"><img src="https://i.postimg.cc/q7299tN1/images-12.jpg" alt="Ted Lasso"><p>Ted Lasso</p></div>
-                <div class="card" onclick="window.open('https://dopebox.to/tv/watch-euphoria-online-hd-28898', '_blank')"><img src="https://i.postimg.cc/j5XBSGQN/MV5-BZj-Vl-N2-M2-N2-Mt-OWVi-ZC00-Mz-Ix-LTlh-ZWEt-MTIw-NDIw-Mz-E3-ZWJi-Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000.jpg" alt="Euphoria"><p>Euphoria</p></div>
-                <div class="card" onclick="window.open('https://dopebox.to/tv/watch-the-boys-online-hd-33895', '_blank')"><img src="https://i.postimg.cc/cCL2gXXz/MV5-BMWJl-N2-U5-Mz-It-Nj-U4-My00-NTM2-LWFj-OWUt-OWFi-Njg3-ZTMx-ZDY1-Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000.jpg" alt="The Boys"><p>The Boys</p></div>
-            </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>TV SHOWS</h1>
+            <p>Discover the best TV shows from Warner Bros.</p>
         </div>
-    </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mb-5">
+        <!-- Trending Now Section -->
+        <section class="mb-5">
+            <h2 class="category-label">Trending Now</h2>
+            <div class="shows-row">
+                <!-- Show 1 -->
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-friends-online-hd-39473', '_blank')">
+                        <img src="https://i.postimg.cc/MHzxs7t0/images-3.jpg" class="card-img-top" alt="Friends">
+                        <div class="show-card-body">
+                            <h5 class="show-card-title">Friends</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Show 2 -->
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-game-of-thrones-online-hd-39539', '_blank')">
+                        <img src="https://i.postimg.cc/tRvmvdrX/images-4.jpg" class="card-img-top" alt="Game of Thrones">
+                        <div class="show-card-body">
+                            <h5 class="show-card-title">Game of Thrones</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Show 3 -->
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-the-big-bang-theory-online-hd-39508', '_blank')">
+                        <img src="https://i.postimg.cc/vHHbfv4b/images-5.jpg" class="card-img-top" alt="The Big Bang Theory">
+                        <div class="show-card-body">
+                            <h5 class="show-card-title">The Big Bang Theory</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Show 4 -->
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-the-witcher-online-hd-29581', '_blank')">
+                        <img src="https://i.postimg.cc/FKc4NWBg/images-6.jpg" class="card-img-top" alt="The Witcher">
+                        <div class="show-card-body">
+                            <h5 class="show-card-title">The Witcher</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Show 5 -->
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-supernatural-online-hd-39542', '_blank')">
+                        <img src="https://i.postimg.cc/sfKRjZw8/images-7.jpg" class="card-img-top" alt="Supernatural">
+                        <div class="show-card-body">
+                            <h5 class="show-card-title">Supernatural</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Show 6 -->
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-stranger-things-online-hd-39444', '_blank')">
+                        <img src="https://i.postimg.cc/tCTGYCcg/images-8.jpg" class="card-img-top" alt="Stranger Things">
+                        <div class="show-card-body">
+                            <h5 class="show-card-title">Stranger Things</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Releases Section -->
+        <section class="mb-5">
+            <h2 class="category-label">New Releases</h2>
+            <div class="shows-row">
+                <!-- Show 1 -->
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-house-of-the-dragon-online-hd-84837', '_blank')">
+                        <img src="https://i.postimg.cc/m25fMWxy/images-9.jpg" class="card-img-top" alt="House of the Dragon">
+                        <div class="show-card-body">
+                            <h5 class="show-card-title">House of the Dragon</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Show 2 -->
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-the-last-of-us-online-hd-92254', '_blank')">
+                        <img src="https://i.postimg.cc/t4n0NvpQ/images-10.jpg" class="card-img-top" alt="The Last of Us">
+                        <div class="show-card-body">
+                            <h5 class="show-card-title">The Last of Us</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Show 3 -->
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-peacemaker-online-hd-76321', '_blank')">
+                        <img src="https://i.postimg.cc/Jzff63zy/images-11.jpg" class="card-img-top" alt="Peacemaker">
+                        <div class="show-card-body">
+                            <h5 class="show-card-title">Peacemaker</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Show 4 -->
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-ted-lasso-online-hd-63165', '_blank')">
+                        <img src="https://i.postimg.cc/q7299tN1/images-12.jpg" class="card-img-top" alt="Ted Lasso">
+                        <div class="show-card-body">
+                            <h5 class="show-card-title">Ted Lasso</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Show 5 -->
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-euphoria-online-hd-28898', '_blank')">
+                        <img src="https://i.postimg.cc/j5XBSGQN/MV5-BZj-Vl-N2-M2-N2-Mt-OWVi-ZC00-Mz-Ix-LTlh-ZWEt-MTIw-NDIw-Mz-E3-ZWJi-Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000.jpg" class="card-img-top" alt="Euphoria">
+                        <div class="show-card-body">
+                            <h5 class="show-card-title">Euphoria</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Show 6 -->
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-the-boys-online-hd-33895', '_blank')">
+                        <img src="https://i.postimg.cc/cCL2gXXz/MV5-BMWJl-N2-U5-Mz-It-Nj-U4-My00-NTM2-LWFj-OWUt-OWFi-Njg3-ZTMx-ZDY1-Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000.jpg" class="card-img-top" alt="The Boys">
+                        <div class="show-card-body">
+                            <h5 class="show-card-title">The Boys</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Warner Bros. All rights reserved. Designed by Kagiso Mmolawa.</p>
+        <div class="container">
+            <p>&copy; 2025 Warner Bros. All rights reserved. Designed by Kagiso Mmolawa.</p>
+            <div class="social-icons mt-3">
+                <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
     </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Add hover effect to show cards
+        document.querySelectorAll('.show-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.3)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = 'none';
+            });
+        });
+    </script>
 </body>
 </html>
-
