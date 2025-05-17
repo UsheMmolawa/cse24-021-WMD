@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warner Bros. | TV Shows</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
-    <!-- Favicon -->
     <link rel="icon" href="https://i.postimg.cc/qBb6VkSQ/e0b67080-ce61-41ef-aa42-e0724fda0266.avif" type="image/png">
-    <!-- Custom CSS -->
     <style>
+        :root {
+            --primary: #FFD700;
+            --dark: #0e0e0e;
+            --light: #ffffff;
+            --accent: #ff5722;
+        }
+        
         body {
             font-family: 'Rubik Glitch', cursive;
-            background: radial-gradient(circle, #ff9800, #ff5722);
-            color: white;
-            margin: 0;
-            padding: 0;
+            background: radial-gradient(circle, #ff9800, var(--accent));
+            color: var(--light);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -28,33 +28,44 @@
         .navbar {
             background: rgba(0, 0, 0, 0.9) !important;
             padding: 15px 0;
+            border-bottom: 2px solid var(--primary);
         }
         
         .navbar-brand img {
             height: 50px;
+            transition: transform 0.3s;
+        }
+        
+        .navbar-brand img:hover {
+            transform: scale(1.1);
         }
         
         .nav-link {
-            color: white !important;
+            color: var(--light) !important;
             font-weight: bold;
             margin: 0 10px;
             position: relative;
             transition: all 0.3s;
         }
         
-        .nav-link:hover {
-            color: #FFD700 !important;
+        .nav-link:hover, .nav-link:focus {
+            color: var(--primary) !important;
             transform: scale(1.1);
         }
         
         .nav-link.active {
-            color: #FFD700 !important;
+            color: var(--primary) !important;
             text-decoration: underline;
         }
         
         .hero {
-            padding: 60px 0;
+            padding: 80px 0 60px;
             text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://i.postimg.cc/8zQJZQKX/warner-bros-background.jpg');
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 40px;
         }
         
         .hero h1 {
@@ -62,6 +73,7 @@
             text-shadow: 3px 3px 0 #000;
             margin-bottom: 20px;
             animation: glitch 1s linear infinite;
+            color: var(--primary);
         }
         
         .hero p {
@@ -76,6 +88,7 @@
             margin: 30px 0 20px;
             text-shadow: 2px 2px 0 #000;
             animation: glitch 2s linear infinite;
+            color: var(--primary);
         }
         
         .show-card {
@@ -86,6 +99,7 @@
             cursor: pointer;
             height: 100%;
             border: none;
+            position: relative;
         }
         
         .show-card:hover {
@@ -95,20 +109,39 @@
         
         .show-card img {
             width: 100%;
-            height: 250px;
+            height: 280px;
             object-fit: cover;
             border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.5s;
+        }
+        
+        .show-card:hover img {
+            transform: scale(1.1);
         }
         
         .show-card-body {
             padding: 15px;
             text-align: center;
+            background: rgba(0,0,0,0.7);
         }
         
         .show-card-title {
             font-size: 1.2rem;
             margin: 0;
             text-shadow: 1px 1px 0 #000;
+            color: var(--primary);
+        }
+        
+        .show-card-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary);
+            color: #000;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.8rem;
         }
         
         footer {
@@ -116,6 +149,7 @@
             padding: 30px 0;
             margin-top: auto;
             text-align: center;
+            border-top: 2px solid var(--primary);
         }
         
         /* Glitch animation */
@@ -127,13 +161,13 @@
             100% { text-shadow: 2px 2px 0 red; }
         }
         
-        /* Custom scrollbar for show rows */
+        /* Custom scrollbar */
         .shows-row {
             display: flex;
             overflow-x: auto;
             padding: 20px 0;
             scrollbar-width: thin;
-            scrollbar-color: #ff5722 #ff9800;
+            scrollbar-color: var(--accent) #ff9800;
         }
         
         .shows-row::-webkit-scrollbar {
@@ -146,8 +180,27 @@
         }
         
         .shows-row::-webkit-scrollbar-thumb {
-            background-color: #ff5722;
+            background-color: var(--accent);
             border-radius: 10px;
+        }
+        
+        /* Modal styles */
+        .modal-content {
+            background-color: var(--dark);
+            color: var(--light);
+            border: 2px solid var(--primary);
+        }
+        
+        .modal-header {
+            border-bottom: 1px solid var(--primary);
+        }
+        
+        .modal-title {
+            color: var(--primary);
+        }
+        
+        .btn-close {
+            filter: invert(1);
         }
         
         /* Responsive adjustments */
@@ -191,15 +244,6 @@
             .show-card img {
                 height: 150px;
             }
-            
-            .navbar-brand img {
-                height: 40px;
-            }
-            
-            .nav-link {
-                font-size: 0.9rem;
-                margin: 0 5px;
-            }
         }
     </style>
 </head>
@@ -208,7 +252,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="https://i.postimg.cc/15pj5d2J/images.png" alt="Warner Bros. Logo">
+                <img src="https://i.postimg.cc/15pj5d2J/images.png" alt="Warner Bros. Logo" width="150">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -225,16 +269,13 @@
                         <a class="nav-link active" href="tvshows.html">TV Shows</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="news.html">News</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cart.html">Cart</a>
+                        <a class="nav-link" href="store.html">Store</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="store.html">Store</a>
+                        <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
                     </li>
                 </ul>
             </div>
@@ -257,8 +298,11 @@
             <div class="shows-row">
                 <!-- Show 1 -->
                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
-                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-friends-online-hd-39473', '_blank')">
-                        <img src="https://i.postimg.cc/MHzxs7t0/images-3.jpg" class="card-img-top" alt="Friends">
+                    <div class="show-card h-100" data-bs-toggle="modal" data-bs-target="#showModal" 
+                         data-title="Friends" data-year="1994" data-genre="Sitcom" 
+                         data-desc="Follows the personal and professional lives of six twenty to thirty-something-year-old friends living in Manhattan.">
+                        <span class="show-card-badge">Trending</span>
+                        <img src="https://i.postimg.cc/MHzxs7t0/images-3.jpg" class="card-img-top" alt="Friends" loading="lazy">
                         <div class="show-card-body">
                             <h5 class="show-card-title">Friends</h5>
                         </div>
@@ -267,8 +311,10 @@
                 
                 <!-- Show 2 -->
                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
-                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-game-of-thrones-online-hd-39539', '_blank')">
-                        <img src="https://i.postimg.cc/tRvmvdrX/images-4.jpg" class="card-img-top" alt="Game of Thrones">
+                    <div class="show-card h-100" data-bs-toggle="modal" data-bs-target="#showModal"
+                         data-title="Game of Thrones" data-year="2011" data-genre="Fantasy"
+                         data-desc="Nine noble families fight for control over the lands of Westeros, while an ancient enemy returns after being dormant for millennia.">
+                        <img src="https://i.postimg.cc/tRvmvdrX/images-4.jpg" class="card-img-top" alt="Game of Thrones" loading="lazy">
                         <div class="show-card-body">
                             <h5 class="show-card-title">Game of Thrones</h5>
                         </div>
@@ -277,8 +323,10 @@
                 
                 <!-- Show 3 -->
                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
-                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-the-big-bang-theory-online-hd-39508', '_blank')">
-                        <img src="https://i.postimg.cc/vHHbfv4b/images-5.jpg" class="card-img-top" alt="The Big Bang Theory">
+                    <div class="show-card h-100" data-bs-toggle="modal" data-bs-target="#showModal"
+                         data-title="The Big Bang Theory" data-year="2007" data-genre="Sitcom"
+                         data-desc="A woman who moves into an apartment across the hall from two brilliant but socially awkward physicists shows them how little they know about life outside of the laboratory.">
+                        <img src="https://i.postimg.cc/vHHbfv4b/images-5.jpg" class="card-img-top" alt="The Big Bang Theory" loading="lazy">
                         <div class="show-card-body">
                             <h5 class="show-card-title">The Big Bang Theory</h5>
                         </div>
@@ -287,8 +335,11 @@
                 
                 <!-- Show 4 -->
                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
-                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-the-witcher-online-hd-29581', '_blank')">
-                        <img src="https://i.postimg.cc/FKc4NWBg/images-6.jpg" class="card-img-top" alt="The Witcher">
+                    <div class="show-card h-100" data-bs-toggle="modal" data-bs-target="#showModal"
+                         data-title="The Witcher" data-year="2019" data-genre="Fantasy"
+                         data-desc="Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny in a turbulent world where people often prove more wicked than beasts.">
+                        <span class="show-card-badge">New</span>
+                        <img src="https://i.postimg.cc/FKc4NWBg/images-6.jpg" class="card-img-top" alt="The Witcher" loading="lazy">
                         <div class="show-card-body">
                             <h5 class="show-card-title">The Witcher</h5>
                         </div>
@@ -297,8 +348,10 @@
                 
                 <!-- Show 5 -->
                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
-                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-supernatural-online-hd-39542', '_blank')">
-                        <img src="https://i.postimg.cc/sfKRjZw8/images-7.jpg" class="card-img-top" alt="Supernatural">
+                    <div class="show-card h-100" data-bs-toggle="modal" data-bs-target="#showModal"
+                         data-title="Supernatural" data-year="2005" data-genre="Horror"
+                         data-desc="Two brothers follow their father's footsteps as hunters, fighting evil supernatural beings of many kinds, including monsters, demons and gods that roam the earth.">
+                        <img src="https://i.postimg.cc/sfKRjZw8/images-7.jpg" class="card-img-top" alt="Supernatural" loading="lazy">
                         <div class="show-card-body">
                             <h5 class="show-card-title">Supernatural</h5>
                         </div>
@@ -307,8 +360,11 @@
                 
                 <!-- Show 6 -->
                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
-                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-stranger-things-online-hd-39444', '_blank')">
-                        <img src="https://i.postimg.cc/tCTGYCcg/images-8.jpg" class="card-img-top" alt="Stranger Things">
+                    <div class="show-card h-100" data-bs-toggle="modal" data-bs-target="#showModal"
+                         data-title="Stranger Things" data-year="2016" data-genre="Sci-Fi"
+                         data-desc="When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.">
+                        <span class="show-card-badge">Popular</span>
+                        <img src="https://i.postimg.cc/tCTGYCcg/images-8.jpg" class="card-img-top" alt="Stranger Things" loading="lazy">
                         <div class="show-card-body">
                             <h5 class="show-card-title">Stranger Things</h5>
                         </div>
@@ -323,8 +379,11 @@
             <div class="shows-row">
                 <!-- Show 1 -->
                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
-                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-house-of-the-dragon-online-hd-84837', '_blank')">
-                        <img src="https://i.postimg.cc/m25fMWxy/images-9.jpg" class="card-img-top" alt="House of the Dragon">
+                    <div class="show-card h-100" data-bs-toggle="modal" data-bs-target="#showModal"
+                         data-title="House of the Dragon" data-year="2022" data-genre="Fantasy"
+                         data-desc="The Targaryen dynasty is at the absolute apex of its power, with more than 15 dragons under their yoke. Most empires crumble from such heights.">
+                        <span class="show-card-badge">Hot</span>
+                        <img src="https://i.postimg.cc/m25fMWxy/images-9.jpg" class="card-img-top" alt="House of the Dragon" loading="lazy">
                         <div class="show-card-body">
                             <h5 class="show-card-title">House of the Dragon</h5>
                         </div>
@@ -333,8 +392,11 @@
                 
                 <!-- Show 2 -->
                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
-                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-the-last-of-us-online-hd-92254', '_blank')">
-                        <img src="https://i.postimg.cc/t4n0NvpQ/images-10.jpg" class="card-img-top" alt="The Last of Us">
+                    <div class="show-card h-100" data-bs-toggle="modal" data-bs-target="#showModal"
+                         data-title="The Last of Us" data-year="2023" data-genre="Drama"
+                         data-desc="After a global pandemic destroys civilization, a hardened survivor takes charge of a 14-year-old girl who may be humanity's last hope.">
+                        <span class="show-card-badge">New</span>
+                        <img src="https://i.postimg.cc/t4n0NvpQ/images-10.jpg" class="card-img-top" alt="The Last of Us" loading="lazy">
                         <div class="show-card-body">
                             <h5 class="show-card-title">The Last of Us</h5>
                         </div>
@@ -343,8 +405,10 @@
                 
                 <!-- Show 3 -->
                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
-                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-peacemaker-online-hd-76321', '_blank')">
-                        <img src="https://i.postimg.cc/Jzff63zy/images-11.jpg" class="card-img-top" alt="Peacemaker">
+                    <div class="show-card h-100" data-bs-toggle="modal" data-bs-target="#showModal"
+                         data-title="Peacemaker" data-year="2022" data-genre="Action"
+                         data-desc="Peacemaker returns home after recovering from his encounter with Bloodsport - only to discover that his freedom comes at a price.">
+                        <img src="https://i.postimg.cc/Jzff63zy/images-11.jpg" class="card-img-top" alt="Peacemaker" loading="lazy">
                         <div class="show-card-body">
                             <h5 class="show-card-title">Peacemaker</h5>
                         </div>
@@ -353,8 +417,10 @@
                 
                 <!-- Show 4 -->
                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
-                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-ted-lasso-online-hd-63165', '_blank')">
-                        <img src="https://i.postimg.cc/q7299tN1/images-12.jpg" class="card-img-top" alt="Ted Lasso">
+                    <div class="show-card h-100" data-bs-toggle="modal" data-bs-target="#showModal"
+                         data-title="Ted Lasso" data-year="2020" data-genre="Comedy"
+                         data-desc="American football coach Ted Lasso heads to London to manage AFC Richmond, a struggling English Premier League football team.">
+                        <img src="https://i.postimg.cc/q7299tN1/images-12.jpg" class="card-img-top" alt="Ted Lasso" loading="lazy">
                         <div class="show-card-body">
                             <h5 class="show-card-title">Ted Lasso</h5>
                         </div>
@@ -363,8 +429,10 @@
                 
                 <!-- Show 5 -->
                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
-                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-euphoria-online-hd-28898', '_blank')">
-                        <img src="https://i.postimg.cc/j5XBSGQN/MV5-BZj-Vl-N2-M2-N2-Mt-OWVi-ZC00-Mz-Ix-LTlh-ZWEt-MTIw-NDIw-Mz-E3-ZWJi-Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000.jpg" class="card-img-top" alt="Euphoria">
+                    <div class="show-card h-100" data-bs-toggle="modal" data-bs-target="#showModal"
+                         data-title="Euphoria" data-year="2019" data-genre="Drama"
+                         data-desc="A group of high school students navigate love and friendships in a world of drugs, sex, trauma, and social media.">
+                        <img src="https://i.postimg.cc/j5XBSGQN/MV5-BZj-Vl-N2-M2-N2-Mt-OWVi-ZC00-Mz-Ix-LTlh-ZWEt-MTIw-NDIw-Mz-E3-ZWJi-Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000.jpg" class="card-img-top" alt="Euphoria" loading="lazy">
                         <div class="show-card-body">
                             <h5 class="show-card-title">Euphoria</h5>
                         </div>
@@ -373,8 +441,11 @@
                 
                 <!-- Show 6 -->
                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
-                    <div class="show-card h-100" onclick="window.open('https://dopebox.to/tv/watch-the-boys-online-hd-33895', '_blank')">
-                        <img src="https://i.postimg.cc/cCL2gXXz/MV5-BMWJl-N2-U5-Mz-It-Nj-U4-My00-NTM2-LWFj-OWUt-OWFi-Njg3-ZTMx-ZDY1-Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000.jpg" class="card-img-top" alt="The Boys">
+                    <div class="show-card h-100" data-bs-toggle="modal" data-bs-target="#showModal"
+                         data-title="The Boys" data-year="2019" data-genre="Action"
+                         data-desc="A group of vigilantes set out to take down corrupt superheroes who abuse their superpowers.">
+                        <span class="show-card-badge">Season 4</span>
+                        <img src="https://i.postimg.cc/cCL2gXXz/MV5-BMWJl-N2-U5-Mz-It-Nj-U4-My00-NTM2-LWFj-OWUt-OWFi-Njg3-ZTMx-ZDY1-Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000.jpg" class="card-img-top" alt="The Boys" loading="lazy">
                         <div class="show-card-body">
                             <h5 class="show-card-title">The Boys</h5>
                         </div>
@@ -387,21 +458,92 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Warner Bros. All rights reserved. Designed by Kagiso Mmolawa.</p>
-            <div class="social-icons mt-3">
-                <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fab fa-youtube"></i></a>
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <h5>Explore More</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="movies.html" class="text-white">Movies</a></li>
+                        <li><a href="tvshows.html" class="text-white">TV Shows</a></li>
+                        <li><a href="store.html" class="text-white">Store</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <h5>Connect With Us</h5>
+                    <div class="social-icons">
+                        <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <p>&copy; 2025 Warner Bros. All rights reserved. Designed by Kagiso Mmolawa.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Show Details Modal -->
+    <div class="modal fade" id="showModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="showModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Year:</strong> <span id="showYear"></span></p>
+                    <p><strong>Genre:</strong> <span id="showGenre"></span></p>
+                    <p id="showDesc"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-warning" id="watchNowBtn">Watch Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- Custom JS -->
     <script>
+        // Initialize modal with show data
+        const showModal = document.getElementById('showModal');
+        if (showModal) {
+            showModal.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget;
+                const title = button.getAttribute('data-title');
+                const year = button.getAttribute('data-year');
+                const genre = button.getAttribute('data-genre');
+                const desc = button.getAttribute('data-desc');
+                
+                const modalTitle = showModal.querySelector('.modal-title');
+                const modalYear = showModal.querySelector('#showYear');
+                const modalGenre = showModal.querySelector('#showGenre');
+                const modalDesc = showModal.querySelector('#showDesc');
+                const watchBtn = showModal.querySelector('#watchNowBtn');
+                
+                modalTitle.textContent = title;
+                modalYear.textContent = year;
+                modalGenre.textContent = genre;
+                modalDesc.textContent = desc;
+                
+                // Set click handler for Watch Now button
+                watchBtn.onclick = function() {
+                    // Get the original card's onclick attribute
+                    const originalOnClick = button.getAttribute('onclick');
+                    if (originalOnClick) {
+                        // Extract the URL from the onclick function
+                        const urlMatch = originalOnClick.match(/window\.open\('([^']+)'/);
+                        if (urlMatch && urlMatch[1]) {
+                            window.open(urlMatch[1], '_blank');
+                        }
+                    }
+                };
+            });
+        }
+
         // Add hover effect to show cards
         document.querySelectorAll('.show-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
